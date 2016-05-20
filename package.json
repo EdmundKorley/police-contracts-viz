@@ -1,7 +1,7 @@
 {
   "name": "police-contracts-viz",
   "version": "0.0.1",
-  "description": "A visualization of police contracts across the United States",
+  "description": "An interactive brief on problematic language in U.S. Police Contracts.",
   "main": "-",
   "scripts": {
     "test": "-"

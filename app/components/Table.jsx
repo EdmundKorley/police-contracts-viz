@@ -4,9 +4,7 @@ var contracts = require('json!./content.json');
 export default class Table extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        }
+        this.state = {}
     }
     render() {
         let headers = Object.keys(contracts[0]);
