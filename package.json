@@ -1,0 +1,32 @@
+{
+  "name": "police-contracts-viz",
+  "version": "0.0.1",
+  "description": "A visualization of police contracts across the United States",
+  "main": "-",
+  "scripts": {
+    "test": "-"
+  },
+  "repository": {
+    "type": "git",
+    "url": "-"
+  },
+  "author": "Edmund Korley",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "babel-core": "^6.9.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "cssnano": "^3.6.2",
+    "grunt": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-postcss": "^0.8.0",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2"
+  }
+}
