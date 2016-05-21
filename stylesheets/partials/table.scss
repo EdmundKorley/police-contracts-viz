@@ -14,6 +14,7 @@ th {
     background-color: $data-yes;
     &:hover {
         background-color: $data-info;
+        color: lighten($data-no, 20);
         cursor: pointer;
     }
 }
