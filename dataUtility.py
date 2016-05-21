@@ -13,10 +13,20 @@ def dataByState(data):
             new[state] = sign
     return new
 
+def dataByUniq(data):
+    new = {}
+    for item in data:
+        id = item['Unique identifier']
+        new[id] = item
+    return new
+
 with open('data/content.csv') as csvFile:
     data = list(csv.DictReader(csvFile))
     for item in data:
         item.pop('', None)
     newData = dataByState(data)
+    uniqData = dataByUniq(data)
     with open('app/components/rehash.json', 'w') as f:
         json.dump(newData, f, ensure_ascii=False)
+    with open('app/components/directory.json', 'w') as f:
+        json.dump(uniqData, f, ensure_ascii=False)
