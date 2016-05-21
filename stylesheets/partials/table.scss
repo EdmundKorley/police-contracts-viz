@@ -1,0 +1,27 @@
+.data-contracts {
+
+}
+
+.data-yes {
+    background-color: $data-yes;
+    &:hover {
+        background-color: $data-base;
+        cursor: pointer;
+    }
+}
+
+.data-col-header {
+    border-left: 2px black solid;
+    border-right: 2px black solid;
+    border-top: 2px black solid;
+}
+
+.data-row-header {
+    border-left: 2px black solid;
+    border-top: 2px black solid;
+    border-bottom: 2px black solid;
+}
+
+.data-no {
+    background-color: $data-no;
+}
