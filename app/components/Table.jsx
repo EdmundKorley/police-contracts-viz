@@ -8,7 +8,7 @@ export default class Table extends Component {
     }
     render() {
 
-        const {renderDiv} = this.props;
+        const {handleClick} = this.props;
 
         const codingHeaders = [<th></th>].concat(headers.map((header) => {
             return <th className="data-col-header">{header}</th>
@@ -19,10 +19,14 @@ export default class Table extends Component {
             let contractCoding = contractPolices.map((policy) => {
                 return policy['General Coding'];
             });
+            let contractIds = contractPolices.map((policy) => {
+                return policy['Unique identifier'];
+            });
             let contractDivs = [<th className="data-row-header">{dept}</th>];
             headers.forEach((header) => {
-                if (contractCoding.indexOf(header) > -1) {
-                    contractDivs.push(<td className="data-yes">Yes</td>);
+                let contractIndex = contractCoding.indexOf(header);
+                if (contractIndex > -1) {
+                    contractDivs.push(<td className="data-yes" onClick={() => { handleClick(contractIds[contractIndex]) }}>Yes</td>);
                 } else {
                     contractDivs.push(<td className="data-no">No</td>);
                 }

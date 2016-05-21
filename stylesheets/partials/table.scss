@@ -2,10 +2,18 @@
 
 }
 
+th, tr, td, table {
+    transition: all 500ms;
+}
+
+th {
+    min-width: 220px;
+}
+
 .data-yes {
     background-color: $data-yes;
     &:hover {
-        background-color: $data-base;
+        background-color: $data-info;
         cursor: pointer;
     }
 }
@@ -22,6 +30,18 @@
     border-bottom: 2px black solid;
 }
 
+.data-info {
+    background-color: $data_info;
+}
+
 .data-no {
     background-color: $data-no;
+}
+
+.data-output {
+    margin: 60px 0;
+    .data-info {
+        color: lighten($data-no, 20);
+        max-width: 600px;
+    }
 }
