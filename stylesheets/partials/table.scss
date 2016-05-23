@@ -52,13 +52,20 @@ th, td {
     .data-info {
         color: lighten($data-no, 20);
         max-width: 400px;
-        height: 160px;
+        height: 230px;
         margin-left: 30px;
         padding: 30px;
     }
     .data-no {
         width: 220px;
         text-align: center;
+    }
+    .social-media-icons {
+        svg {
+            height: 30px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
     }
 }
 
@@ -67,6 +74,7 @@ th, td {
     span {
         display: none;
         font-size: 18px;
+        text-align: left;
     }
     &:hover span, &:focus span {
         display:block;
