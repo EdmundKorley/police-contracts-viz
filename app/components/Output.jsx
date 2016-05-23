@@ -17,15 +17,16 @@ export default class Output extends Component {
         const { id } = this.props;
         let review = directory[id];
         let text = review['Contract Language'];
-        let textToShow = truncate(text, 500);
+        let textToShow = truncate(text, 200);
         let reviewDivs = Object.keys(review).map((key) => {
                 if (key != 'Contract Language') {
                     let reviewToShow = truncate(review[key], 30)
                     return <tr>
                         <th className="data-row-header">{key}</th>
-                        <td className="data-no data-tooltip">
+                        <td className={reviewToShow.length == review[key].length ? "data-no" : "data-no data-tooltip"}>
                             {reviewToShow}
-                            <span>{review[key]}</span>
+
+                            <span>{reviewToShow.length == review[key].length ? "" : review[key]}</span>
                         </td>
                     </tr>
                 }
@@ -39,9 +40,9 @@ export default class Output extends Component {
             </table>
             <div className="data-info">
                 <h3>Contract Language</h3>
-                <p className="data-tooltip">
+                <p className={textToShow.length == text.length ? "" : "data-tooltip"}>
                     {textToShow}
-                    <span>{text}</span>
+                    <span>{textToShow.length == text.length ? "" : text}</span>
                 </p>
             </div>
         </div>

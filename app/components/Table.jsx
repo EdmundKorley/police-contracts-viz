@@ -17,14 +17,14 @@ export default class Table extends Component {
         const contractDivs = Object.keys(contracts).map((dept) => {
             let contractPolices = contracts[dept];
             let contractCoding = contractPolices.map((policy) => {
-                return policy['General Coding'];
+                return policy['General Coding'].toLowerCase();
             });
             let contractIds = contractPolices.map((policy) => {
                 return policy['Unique identifier'];
             });
             let contractDivs = [<th className="data-row-header">{dept}</th>];
             headers.forEach((header) => {
-                let contractIndex = contractCoding.indexOf(header);
+                let contractIndex = contractCoding.indexOf(header.toLowerCase());
                 if (contractIndex > -1) {
                     contractDivs.push(<td className="data-yes" onClick={() => { handleClick(contractIds[contractIndex]) }}> </td>);
                 } else {
@@ -36,15 +36,17 @@ export default class Table extends Component {
             </tr>
         });
 
-        return <table className='data-contracts'>
-            <thead>
-                <tr>
-                    {codingHeaders}
-                </tr>
-            </thead>
-            <tbody>
-                {contractDivs}
-            </tbody>
-        </table>
+        return <div className='data-contracts'>
+            <table>
+                <thead>
+                    <tr>
+                        {codingHeaders}
+                    </tr>
+                </thead>
+                <tbody>
+                    {contractDivs}
+                </tbody>
+            </table>
+        </div>
     }
 }

@@ -1,1 +1,14 @@
-export default ['Limits Discipline', 'Erases misconduct records', 'Disqualifies Complaints', 'Limits Oversight', 'Delays Interrogations', 'Limits Interrogations', 'Delays interrogations', 'Gives officers access to information', 'Limits interrogations', 'City Pays Misconduct Settlements', 'Paid Leave for Misconduct', 'City Pays Interrogation Costs', 'City Pays for Legal Defense', 'Limits Transparency'];
+export default [
+    'Limits Discipline',
+    'Erases Misconduct Records',
+    'Disqualifies Complaints',
+    'Limits Oversight',
+    'Delays Interrogations',
+    'Limits Interrogations',
+    'Gives Officers Access to Information',
+    'City Pays Misconduct Settlements',
+    'Paid Leave for Misconduct',
+    'City Pays Interrogation Costs',
+    'City Pays for Legal Defense',
+    'Limits Transparency'
+];
