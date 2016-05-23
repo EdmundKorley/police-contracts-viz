@@ -11,7 +11,7 @@ export default class Output extends Component {
         let reviewDivs = Object.keys(review).map((key) => {
             return <tr>
                 <th className="data-row-header">{key}</th>
-                <td className={key === 'Contract Language' ? 'data-info' : ''}>{review[key]}</td>
+                <td className={key === 'Contract Language' ? 'data-info' : 'data-no'}>{review[key]}</td>
             </tr>
         });
         return <div className="data-output">
