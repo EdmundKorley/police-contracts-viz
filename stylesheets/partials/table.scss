@@ -1,6 +1,6 @@
 th, td {
     min-width: 140px;
-    height: 40px;
+    height: 20px;
 }
 
 .data-contracts {
@@ -23,15 +23,16 @@ th, td {
 }
 
 .data-col-header {
-    border-left: 2px black solid;
-    border-right: 2px black solid;
-    border-top: 2px black solid;
+    // border-left: 2px black solid;
+    // border-right: 2px black solid;
+    // border-top: 2px black solid;
 }
 
 .data-row-header {
-    border-left: 2px black solid;
-    border-top: 2px black solid;
-    border-bottom: 2px black solid;
+    // border-left: 2px black solid;
+    // border-top: 2px black solid;
+    // border-bottom: 2px black solid;
+
 }
 
 .data-info {
@@ -45,7 +46,7 @@ th, td {
 .data-output {
     display: inline-flex;
     justify-content: space-around;
-    margin: 60px 0;
+    margin: 30px 0;
     max-width: 100vw;
     max-height: 400px;
     font-size: 16px;
@@ -74,6 +75,7 @@ th, td {
     span {
         display: none;
         font-size: 18px;
+        min-width: 300px;
         text-align: left;
     }
     &:hover span, &:focus span {

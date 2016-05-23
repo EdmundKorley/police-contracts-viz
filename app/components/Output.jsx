@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import headers from './utils/headers';
+import { truncate } from './utils/handy';
 var directory = require('json!./utils/directory.json');
-
-function truncate(text, bound) {
-    let textToShow;
-    if (text.length > bound) {
-        textToShow = text.substr(0, bound) + '...';
-    } else {
-        textToShow = text;
-    }
-    return textToShow;
-}
 
 export default class Output extends Component {
     render() {
