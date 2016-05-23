@@ -23,9 +23,9 @@ module.exports = {
       }
     }),
     new webpack.ProvidePlugin({
-     $: "jquery",
-     jquery: "jquery",
-     "windows.jQuery": "jquery"
+      $: "jquery",
+      jquery: "jquery",
+      "windows.jQuery": "jquery"
     }),
   ]
 };
