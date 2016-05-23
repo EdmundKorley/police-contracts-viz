@@ -25,9 +25,6 @@ th {
 
 .data-info {
     background-color: $data-info;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .data-no {
@@ -39,14 +36,33 @@ th {
     justify-content: space-around;
     margin: 60px 0;
     max-width: 100vw;
-    max-height: 600px;
+    max-height: 400px;
     .data-info {
         color: lighten($data-no, 20);
         max-width: 600px;
+        height: 160px;
         margin-left: 30px;
         padding: 30px;
     }
     .data-no {
-        width: 200px;
+        width: 220px;
+    }
+}
+
+.data-tooltip {
+    position: relative;
+    span {
+        display: none;
+    }
+    &:hover span, &:focus span {
+        display:block;
+        position:absolute;
+        z-index: 1000;
+        top:1em;
+        left:1.5em;
+        padding: 0.2em 0.6em;
+        border-radius: 7px;
+        background-color: black;
+        color: $data-no;
     }
 }
