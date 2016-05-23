@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-var contracts = require('json!./rehash.json');
-var headers = ['Limits Discipline', 'Erases misconduct records', 'Disqualifies Complaints', 'Limits Oversight', 'Delays Interrogations', 'Limits Interrogations', 'Delays interrogations', 'Gives officers access to information', 'Limits interrogations', 'City Pays Misconduct Settlements', 'Paid Leave for Misconduct', 'City Pays Interrogation Costs', 'City Pays for Legal Defense', 'Limits Transparency'];
+import headers from './utils/headers';
+var contracts = require('json!./utils/rehash.json');
 
 export default class Table extends Component {
     constructor(props) {

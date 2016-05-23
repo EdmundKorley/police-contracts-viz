@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-var directory = require('json!./directory.json');
-var headers = ['Limits Discipline', 'Erases misconduct records', 'Disqualifies Complaints', 'Limits Oversight', 'Delays Interrogations', 'Limits Interrogations', 'Delays interrogations', 'Gives officers access to information', 'Limits interrogations', 'City Pays Misconduct Settlements', 'Paid Leave for Misconduct', 'City Pays Interrogation Costs', 'City Pays for Legal Defense', 'Limits Transparency'];
+import headers from './utils/headers';
+var directory = require('json!./utils/directory.json');
 
 export default class Output extends Component {
     render() {
