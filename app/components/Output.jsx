@@ -23,6 +23,9 @@ export default class Output extends Component {
                 }
                 return false
         });
+        const host = "https://edmundkorley.com/police-contracts-viz";
+        let tweetShare = "https://twitter.com/home?status=" + truncate(`${review['Contract City/State'].toLowerCase()} contract language - ${text.toLowerCase()}`, 106) + "%20%23campaignzero%20%23policecontracts";
+        let fbShare = "https://www.facebook.com/sharer/sharer.php?u=" + host;
         return <div className="data-output">
             <table>
                 <tbody>
@@ -36,16 +39,18 @@ export default class Output extends Component {
                     <span>{textToShow.length == text.length ? "" : text}</span>
                 </p>
                 <div className="social-media-icons">
-                    <svg onClick={ () => console.log('Hey Facebook, check this out!') } width="40px" height="40px" viewBox="0 0 266.893 266.895" enableBackground="new 0 0 266.893 266.895">
-                        <path id="b" fill="#3C5A99" d="M248.082,262.307c7.854,0,14.223-6.369,14.223-14.225V18.812
-                            c0-7.857-6.368-14.224-14.223-14.224H18.812c-7.857,0-14.224,6.367-14.224,14.224v229.27c0,7.855,6.366,14.225,14.224,14.225
-                            H248.082z"/>
-                        <path id="f" fill="#FFFFFF" d="M182.409,262.307v-99.803h33.499l5.016-38.895h-38.515V98.777c0-11.261,3.127-18.935,19.275-18.935
-                            l20.596-0.009V45.045c-3.562-0.474-15.788-1.533-30.012-1.533c-29.695,0-50.025,18.126-50.025,51.413v28.684h-33.585v38.895h33.585
-                            v99.803H182.409z"/>
-                    </svg>
-                    <a href="https://twitter.com/share" className="" dataText={textToShow} dataVia="melanchroes" dataRelated="samswey" dataHashtags="campaignzero">
-                        <svg onClick={ () => console.log('Hey Twitter, check this out!') } width="40px" height="40px" viewBox="0 0 182.66667 150.66667">
+                    <a target="_blank" href={fbShare}>
+                        <svg width="40px" height="40px" viewBox="0 0 266.893 266.895" enableBackground="new 0 0 266.893 266.895">
+                            <path id="b" fill="#3C5A99" d="M248.082,262.307c7.854,0,14.223-6.369,14.223-14.225V18.812
+                                c0-7.857-6.368-14.224-14.223-14.224H18.812c-7.857,0-14.224,6.367-14.224,14.224v229.27c0,7.855,6.366,14.225,14.224,14.225
+                                H248.082z"/>
+                            <path id="f" fill="#FFFFFF" d="M182.409,262.307v-99.803h33.499l5.016-38.895h-38.515V98.777c0-11.261,3.127-18.935,19.275-18.935
+                                l20.596-0.009V45.045c-3.562-0.474-15.788-1.533-30.012-1.533c-29.695,0-50.025,18.126-50.025,51.413v28.684h-33.585v38.895h33.585
+                                v99.803H182.409z"/>
+                        </svg>
+                    </a>
+                    <a target="_blank" href={tweetShare}>
+                        <svg width="40px" height="40px" viewBox="0 0 182.66667 150.66667">
                             <defs id="defs6">
                                 <clipPath id="clipPath20" clipPathUnits="userSpaceOnUse">
                                     <path id="path18" d="m0 10.012h1366.9v1110.9h-1366.9z"/>

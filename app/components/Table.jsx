@@ -39,7 +39,6 @@ export default class Table extends Component {
             </tr>
         });
         return divs.filter((x) => typeof x == 'object').sort((a, b) => {
-            console.log(a, b);
             if (a.props.children[0].props.children[0] < b.props.children[0].props.children[0]) {
                 return -1;
             }
