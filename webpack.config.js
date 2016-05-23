@@ -21,6 +21,11 @@ module.exports = {
       'process.env': {
         'NODE_ENV': '"production"'
       }
-    })
+    }),
+    new webpack.ProvidePlugin({
+     $: "jquery",
+     jquery: "jquery",
+     "windows.jQuery": "jquery"
+    }),
   ]
 };
