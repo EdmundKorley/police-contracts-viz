@@ -22,6 +22,7 @@
     "cssnano": "^3.6.2",
     "grunt": "^1.0.1",
     "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.8.0",
     "json-loader": "^0.5.4",
     "webpack": "^1.13.1"

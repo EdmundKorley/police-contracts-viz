@@ -33,13 +33,21 @@ module.exports = function(grunt) {
                 src: 'public/*.css'
             }
         },
+        // Watch and do transformations upon file changes
+        watch: {
+            css: {
+                files: 'stylesheets/**/*.scss',
+                tasks: ['sass', 'postcss']
+            }
+        }
     });
 
     // Load the plugin that provides the "sass" and "postcss" tasks.
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
-    // Default task(s).
-    grunt.registerTask('default', ['sass', 'postcss']);
+    // Default task(s)
+    grunt.registerTask('default', ['watch']);
 
 };
