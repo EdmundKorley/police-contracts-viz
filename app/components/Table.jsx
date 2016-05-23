@@ -38,7 +38,16 @@ export default class Table extends Component {
                 {contractDivs}
             </tr>
         });
-        return divs;
+        return divs.filter((x) => typeof x == 'object').sort((a, b) => {
+            console.log(a, b);
+            if (a.props.children[0].props.children[0] < b.props.children[0].props.children[0]) {
+                return -1;
+            }
+            if (a.props.children[0].props.children[0] > b.props.children[0].props.children[0]) {
+                return 1;
+            }
+            return 0;
+        });
     }
     render() {
 
