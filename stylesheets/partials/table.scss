@@ -11,6 +11,10 @@ th {
     }
 }
 
+.data-col-header, .data-row-header {
+    width: 100px;
+}
+
 .data-col-header {
     border-left: 2px black solid;
     border-right: 2px black solid;
