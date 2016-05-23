@@ -4,7 +4,7 @@
   "description": "An interactive brief on problematic language in U.S. Police Contracts.",
   "main": "-",
   "scripts": {
-    "start": "webpack -w",
+    "start": "webpack -p && http-server public/",
     "test": "-"
   },
   "repository": {
