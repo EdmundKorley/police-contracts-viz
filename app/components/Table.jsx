@@ -26,9 +26,9 @@ export default class Table extends Component {
             headers.forEach((header) => {
                 let contractIndex = contractCoding.indexOf(header);
                 if (contractIndex > -1) {
-                    contractDivs.push(<td className="data-yes" onClick={() => { handleClick(contractIds[contractIndex]) }}>Yes</td>);
+                    contractDivs.push(<td className="data-yes" onClick={() => { handleClick(contractIds[contractIndex]) }}> </td>);
                 } else {
-                    contractDivs.push(<td className="data-no">No</td>);
+                    contractDivs.push(<td className="data-no"> </td>);
                 }
             });
             return <tr>

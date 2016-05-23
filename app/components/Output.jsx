@@ -6,13 +6,15 @@ export default class Output extends Component {
     render() {
         const { id } = this.props;
         let review = directory[id];
-        let text;
-        console.log(review);
+        let text = review['Contract Language'];
         let reviewDivs = Object.keys(review).map((key) => {
-            return <tr>
-                <th className="data-row-header">{key}</th>
-                <td className={key === 'Contract Language' ? 'data-info' : 'data-no'}>{review[key]}</td>
-            </tr>
+                if (key != 'Contract Language') {
+                    return <tr>
+                        <th className="data-row-header">{key}</th>
+                        <td className="data-no">{review[key]}</td>
+                    </tr>
+                }
+                return false
         });
         return <div className="data-output">
             <table>
@@ -20,7 +22,8 @@ export default class Output extends Component {
                     {reviewDivs}
                 </tbody>
             </table>
-            <div>
+            <div className="data-info">
+                <h3>Contract Language</h3>
                 {text}
             </div>
         </div>
