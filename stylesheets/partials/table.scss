@@ -2,14 +2,8 @@ th {
     min-width: 220px;
 }
 
-.data-contracts {
-    width: 100%;
-    border-collapse: collapse;
-}
-
 .data-yes {
     background-color: $data-yes;
-    box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2);
     &:hover {
         background-color: $data-info;
         color: lighten($data-no, 20);
@@ -30,7 +24,11 @@ th {
 }
 
 .data-info {
-    background-color: $data_info;
+    background-color: $data-info;
+}
+
+.data-no {
+    background-color: $data-no;
 }
 
 .data-output {
@@ -39,9 +37,4 @@ th {
         color: lighten($data-no, 20);
         max-width: 600px;
     }
-}
-
-// Zebra striping
-tr:nth-of-type(odd) {
-  background: $data-no;
 }
