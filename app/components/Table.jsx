@@ -66,15 +66,15 @@ export default class Table extends Component {
             <div className="data-legend">
                 <div className="data-legend-unit data-no-legend">
                     <div className="data-circle"></div>
-                    <p>No such language</p>
+                    <h3>No such language</h3>
                 </div>
                 <div className="data-legend-unit data-yes-legend">
                     <div className="data-circle"></div>
-                    <p>Problematic language</p>
+                    <h3>Problematic language</h3>
                 </div>
                 <div className="data-legend-unit data-info-legend">
                     <div className="data-circle"></div>
-                    <p>Details on language</p>
+                    <h3>Details on language</h3>
                 </div>
             </div>
             <table className="data-outer-table">

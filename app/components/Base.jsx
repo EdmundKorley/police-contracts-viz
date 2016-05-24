@@ -20,8 +20,8 @@ export default class Base extends Component {
         let onKeyDown = this.handleClick;
         let id = this.state.id;
         return <div className="data-base">
-            <Output id={this.state.id} />
             <Table id={this.state.id} handleClick={this.handleClick} />
+            <Output id={this.state.id} />
         </div>;
     }
 }

@@ -5,9 +5,10 @@ def dataByState(data):
     new = {}
     for item in data:
         state = item['Contract City/State']
+        coding = item['General Coding']
         sign = new.get(state, None)
         if sign is None:
-            new[state] = []
+            new[state] = [item]
         else:
             sign.append(item)
             new[state] = sign
