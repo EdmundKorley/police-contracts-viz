@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import headers from './utils/headers';
 import { truncate } from './utils/handy';
 var contracts = require('json!./utils/rehash.json');
+console.log('STATE OF JSON', contracts['Cleveland']);
 var directory = require('json!./utils/directory.json');
 
 export default class Table extends Component {
@@ -66,15 +67,15 @@ export default class Table extends Component {
             <div className="data-legend">
                 <div className="data-legend-unit data-no-legend">
                     <div className="data-circle"></div>
-                    <h3>No such language</h3>
+                    <h4>No such language</h4>
                 </div>
                 <div className="data-legend-unit data-yes-legend">
                     <div className="data-circle"></div>
-                    <h3>Problematic language</h3>
+                    <h4>Problematic language</h4>
                 </div>
                 <div className="data-legend-unit data-info-legend">
                     <div className="data-circle"></div>
-                    <h3>Details on language</h3>
+                    <h4>Details on language</h4>
                 </div>
             </div>
             <table className="data-outer-table">
