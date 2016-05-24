@@ -23,8 +23,8 @@ export default class Output extends Component {
                 }
                 return false
         });
-        const host = "https://edmundkorley.com/police-contracts-viz";
-        let tweetShare = "https://twitter.com/home?status=" + truncate(`${review['Contract City/State'].toLowerCase()} contract language - ${text.toLowerCase()}`, 106) + "%20%23campaignzero%20%23policecontracts";
+        const host = "http://bit.ly/police-contracts";
+        let tweetShare = "https://twitter.com/home?status=" + truncate(`${review['Contract City/State'].toLowerCase()} contract language ${host} ${text.toLowerCase()}`, 105) + "%20%23campaignzero%20%23policecontracts";
         let fbShare = "https://www.facebook.com/sharer/sharer.php?u=" + host;
         return <div className="data-output">
             <table>
