@@ -4,8 +4,9 @@ import Base from './components/Base.jsx';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
 render(
-    <Router history={browserHistory}>
-      <Route path="/" component={Base}>
-      </Route>
-    </Router>
+    // <Router history={browserHistory}>
+    //   <Route path="/" component={Base}>
+    //   </Route>
+    // </Router>
+    <Base />
     , document.getElementById('contracts-table'));
