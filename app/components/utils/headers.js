@@ -12,7 +12,7 @@ export default [
     // 'City Pays for Legal Defense',
     // 'Limits Transparency'
     'City Pays for Misconduct',
-    'Delays Interrogrations',
+    'Delays Interrogations',
     'Disqualifies Complaints',
     'Erases misconduct records',
     'Gives officers unfair access to information',
