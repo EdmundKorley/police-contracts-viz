@@ -28,7 +28,6 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
-    "jquery": "^2.2.4",
     "react": "^15.0.2",
     "react-dom": "^15.0.2"
   }

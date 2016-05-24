@@ -63,6 +63,20 @@ export default class Table extends Component {
         const contractDivsCity = this.getContractsDivs(true, id, handleClick);
 
         return <div className='data-contracts'>
+            <div className="data-legend">
+                <div className="data-legend-unit data-no-legend">
+                    <div className="data-circle"></div>
+                    <p>No such language</p>
+                </div>
+                <div className="data-legend-unit data-yes-legend">
+                    <div className="data-circle"></div>
+                    <p>Problematic language</p>
+                </div>
+                <div className="data-legend-unit data-info-legend">
+                    <div className="data-circle"></div>
+                    <p>Details on language</p>
+                </div>
+            </div>
             <table className="data-outer-table">
                 <div>
                     <tr>

@@ -10,10 +10,15 @@ export default class Base extends Component {
         }
         this.handleClick = this.handleClick.bind(this);
     }
+    componentDidMount() {
+
+    }
     handleClick(id) {
         this.setState({id: id});
     }
     render() {
+        let onKeyDown = this.handleClick;
+        let id = this.state.id;
         return <div className="data-base">
             <Output id={this.state.id} />
             <Table id={this.state.id} handleClick={this.handleClick} />

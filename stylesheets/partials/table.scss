@@ -21,6 +21,40 @@
     }
 }
 
+.data-legend {
+    display: inline-flex;
+    font-size: 18px;
+    .data-legend-unit {
+        display: inline-flex;
+    }
+    .data-no-legend {
+        .data-circle {
+            background-color: $data-no;
+        }
+    }
+    .data-yes-legend {
+        .data-circle {
+            background-color: $data-yes;
+
+        }
+    }
+    .data-info-legend {
+        .data-circle {
+            background-color: $data-info;
+        }
+    }
+    .data-circle {
+        border-radius: 50px;
+        height: 30px;
+        width: 30px;
+        margin: auto 0;
+        margin-left: 30px;
+    }
+    p {
+        margin-left: 10px;
+    }
+}
+
 .data-yes {
     background-color: $data-yes;
     &:hover {
