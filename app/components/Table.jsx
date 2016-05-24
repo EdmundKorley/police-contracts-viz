@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import headers from './utils/headers';
 import { truncate } from './utils/handy';
 var contracts = require('json!./utils/rehash.json');
-console.log('STATE OF JSON', contracts['Cleveland']);
-var directory = require('json!./utils/directory.json');
 
 export default class Table extends Component {
     constructor(props) {
