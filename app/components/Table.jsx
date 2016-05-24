@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import headers from './utils/headers';
 import { truncate } from './utils/handy';
 var contracts = require('json!./utils/rehash.json');
+var directory = require('json!./utils/directory.json');
 
 export default class Table extends Component {
     constructor(props) {
         super(props);
         this.getContractsDivs = this.getContractsDivs.bind(this);
     }
-    getContractsDivs(getStates, handleClick) {
+    getContractsDivs(getStates, id, handleClick) {
         const divs = Object.keys(contracts).map((dept) => {
             let sign = dept.toLowerCase().includes('bill of rights');
             if (sign == getStates) return false
@@ -19,7 +20,7 @@ export default class Table extends Component {
             let contractIds = contractPolices.map((policy) => {
                 return policy['Unique identifier'];
             });
-            let rowHeader = truncate(dept, 15);
+            let rowHeader = truncate(dept, 21);
             let contractDivs = [
                 <th className={rowHeader.length == dept.length ? "data-row-header" : "data-row-header data-tooltip"}>
                     { rowHeader }
@@ -28,8 +29,10 @@ export default class Table extends Component {
             ];
             headers.forEach((header) => {
                 let contractIndex = contractCoding.indexOf(header.toLowerCase());
+                let uniqueID = contractIds[contractIndex];
+                let contract = contracts[uniqueID];
                 if (contractIndex > -1) {
-                    contractDivs.push(<td className="data-yes" onClick={() => { handleClick(contractIds[contractIndex]) }}> </td>);
+                    contractDivs.push(<td className={id == uniqueID ? "data-info" : "data-yes"} onClick={() => { handleClick(uniqueID) }}> </td>);
                 } else {
                     contractDivs.push(<td className="data-no"> </td>);
                 }
@@ -50,14 +53,14 @@ export default class Table extends Component {
     }
     render() {
 
-        const { handleClick } = this.props;
+        const { handleClick, id } = this.props;
 
         const codingHeaders = [<th></th>].concat(headers.map((header) => {
             return <th className="data-col-header">{header}</th>
         }));
 
-        const contractDivsState = this.getContractsDivs(false, handleClick);
-        const contractDivsCity = this.getContractsDivs(true, handleClick);
+        const contractDivsState = this.getContractsDivs(false, id, handleClick);
+        const contractDivsCity = this.getContractsDivs(true, id, handleClick);
 
         return <div className='data-contracts'>
             <table>

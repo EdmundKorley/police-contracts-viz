@@ -16,7 +16,7 @@ export default class Base extends Component {
     render() {
         return <div className="data-base">
             <Output id={this.state.id} />
-            <Table handleClick={this.handleClick} />
+            <Table id={this.state.id} handleClick={this.handleClick} />
         </div>;
     }
 }
