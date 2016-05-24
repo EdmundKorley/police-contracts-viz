@@ -22,9 +22,9 @@ export default class Table extends Component {
             });
             let rowHeader = truncate(dept, 21);
             let contractDivs = [
-                <th className={rowHeader.length == dept.length ? "data-row-header" : "data-row-header data-tooltip"}>
+                <th className={rowHeader.length == dept.length ? 'data-row-header' : 'data-row-header data-tooltip'}>
                     { rowHeader }
-                    <span>{rowHeader.length == dept.length ? "" : dept }</span>
+                    <span>{rowHeader.length == dept.length ? '' : dept }</span>
                 </th>
             ];
             headers.forEach((header) => {
@@ -32,9 +32,9 @@ export default class Table extends Component {
                 let uniqueID = contractIds[contractIndex];
                 let contract = contracts[uniqueID];
                 if (contractIndex > -1) {
-                    contractDivs.push(<td className={id == uniqueID ? "data-info" : "data-yes"} onClick={() => { handleClick(uniqueID) }}> </td>);
+                    contractDivs.push(<td className={id == uniqueID ? 'data-info' : 'data-yes'} onClick={() => { handleClick(uniqueID) }}> </td>);
                 } else {
-                    contractDivs.push(<td className="data-no"> </td>);
+                    contractDivs.push(<td className='data-no'> </td>);
                 }
             });
             return <tr>
@@ -55,25 +55,27 @@ export default class Table extends Component {
 
         const { handleClick, id } = this.props;
 
-        const codingHeaders = [<th></th>].concat(headers.map((header) => {
-            return <th className="data-col-header">{header}</th>
+        const codingHeaders = [<th className="data-out-row-header"></th>].concat(headers.map((header) => {
+            return <th className='data-out-col-header'>{header}</th>
         }));
 
         const contractDivsState = this.getContractsDivs(false, id, handleClick);
         const contractDivsCity = this.getContractsDivs(true, id, handleClick);
 
         return <div className='data-contracts'>
-            <table>
-                <thead>
+            <table className="data-outer-table">
+                <div>
                     <tr>
                         {codingHeaders}
                     </tr>
-                </thead>
-                <tbody>
-                    {contractDivsState}
-                    <br></br>
-                    {contractDivsCity}
-                </tbody>
+                </div>
+                <div className="data-inner-table">
+                    <table>
+                        {contractDivsState}
+                        <br></br>
+                        {contractDivsCity}
+                    </table>
+                </div>
             </table>
         </div>
     }

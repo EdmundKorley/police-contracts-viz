@@ -1,7 +1,21 @@
 .data-contracts {
     width:95vw;
-    height:500px;
-    overflow:auto;
+    .data-outer-table {
+        table-layout: fixed;
+    }
+    .data-out-row-header {
+        min-width: 140px;
+    }
+    .data-out-col-header {
+        width: 80px;
+    }
+    .data-inner-table {
+        height: 500px;
+        overflow-y: auto;
+    }
+    td {
+        width: 80px;
+    }
 }
 
 .data-yes {
@@ -11,18 +25,6 @@
         color: lighten($data-no, 20);
         cursor: pointer;
     }
-}
-
-.data-col-header, .data-row-header {
-    width: 80px;
-}
-
-.data-col-header {
-    width: 80px;
-}
-
-.data-row-header {
-    width: 140px;
 }
 
 .data-info {
@@ -86,5 +88,4 @@
 
 th, td {
     text-align: left;
-    min-width: 60px;
 }
