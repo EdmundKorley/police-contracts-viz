@@ -6,33 +6,29 @@ var directory = require('json!./utils/directory.json');
 export default class Output extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            activeID: this.props.ids[this.props.ids.length - 1]
-        }
         this.setActive = this.setActive.bind(this);
+        this.getDivs= this.getDivs.bind(this);
     }
     setActive(id) {
-        // console.log(this.state.activeID);
-        this.setState({activeID: Number(id)});
+        const { handleClick, ids } = this.props;
+        handleClick([...ids, Number(id)]);
     }
-    render() {
+    getDivs(global_id) {
         const { ids } = this.props;
         const setActive = this.setActive;
-        const active_id_initial = ids[ids.length - 1];
-        const active_id_state = this.state.activeID;
         let reviews = ids.map((id) => directory[id]);
         let texts = reviews.map((review) => [review['Contract Language'], Number(review['Unique identifier'])]);
         let textsToShow = texts.map((text) => [truncate(text[0], 200), text[1]]);
         let textToShow, text;
         for (var i = 0; i < textsToShow.length; i++) {
-            if (textsToShow[i][1] == active_id_state || textsToShow[i][1] == active_id_initial) {
+            if (textsToShow[i][1] == global_id) {
                 textToShow = textsToShow[i][0];
                 text = texts[i][0];
             }
         }
         let reviewDivIndex;
         let reviewDivs = reviews.map((review, index) => {
-            if (review['Unique identifier'] == active_id_initial || review['Unique identifier'] == active_id_state) {
+            if (review['Unique identifier'] == global_id) {
                 reviewDivIndex = index;
             }
             return Object.keys(review).map((key) => {
@@ -49,16 +45,26 @@ export default class Output extends Component {
                 return <tr style={{ display: 'none' }}></tr>
             });
         });
+        let reviewDiv = reviewDivs[reviewDivIndex];
+        let reviewPolyDivs = reviews
+                                .sort((r1, r2) => { if (Number(r1['Unique identifier']) > Number(r2['Unique identifier'])) { return 1 } else if (Number(r1['Unique identifier']) < Number(r2['Unique identifier'])) { return -1 }; return 0; })
+                                .map((review) => <div onClick={() => setActive(review['Unique identifier'])} className="data-choose">{ review['Contract City/State'] } - { review['Unique identifier'] }</div>)
 
         const host = window.location.href;
         let tweetShare = "https://twitter.com/home?status=" + truncate(`${host} - section ${reviews[0]['Contract Section'].toLowerCase()} of ${reviews[0]['Contract City/State'].toLowerCase()} ${reviews[0]['Specific Impact of Provision'].toLowerCase()}`, 106) + "%20%23campaignzero%20%23policecontracts";
         let fbShare = "https://www.facebook.com/sharer/sharer.php?u=" + host;
 
+        return [reviews, reviewDiv, reviewPolyDivs, text, textToShow, tweetShare, fbShare];
+    }
+    render() {
+        console.log(this.props.ids);
+        let idToPass = this.props.ids[this.props.ids.length - 1];
+        let [reviews, reviewDiv, reviewPolyDivs, text, textToShow, tweetShare, fbShare] = this.getDivs(idToPass);
         return <div>
             <div className="data-output">
                 <table>
                     <tbody>
-                        { reviewDivs[reviewDivIndex] }
+                        { reviewDiv }
                     </tbody>
                 </table>
                 <div className="data-info">
@@ -101,9 +107,7 @@ export default class Output extends Component {
                 </div>
             </div>
             <div className="data-output-pool">
-                {
-                    reviews.map((review) => <div onClick={() => setActive(review['Unique identifier'])} className="data-choose">{ review['Contract City/State'] } - { review['Unique identifier'] }</div>)
-                }
+                { reviewPolyDivs }
             </div>
         </div>
     }

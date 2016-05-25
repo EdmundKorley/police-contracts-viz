@@ -25,25 +25,26 @@ export default class Base extends Component {
     }
     handleClick(ids) {
         let newIds = [];
+        let leadId = ids[ids.length - 1];
         let existingIds = this.state.ids;
         // If ids in already in our state, remove it from our list. For a mock toggle effect.
         ids.forEach((id) => {
             if (!existingIds.indexOf(id) > -1) {
-                if (id < 532 && id > 0 && typeof id == 'number') {
+                if (id < 532 && id > 0 && typeof id == 'number' && id != leadId) {
                     newIds.push(id)
                 };
             }
         });
         newIds = Array.from(new Set(newIds));
-        console.log('Almost there', newIds);
-
+        newIds = [...newIds, leadId];
+        
         this.resetURL(newIds);
         this.setState({ids: newIds});
     }
     render() {
         return <div className="data-base">
             <Table ids={this.state.ids} handleClick={this.handleClick} />
-            <Output ids={this.state.ids} />
+            <Output ids={this.state.ids} handleClick={this.handleClick} />
         </div>;
     }
 }
