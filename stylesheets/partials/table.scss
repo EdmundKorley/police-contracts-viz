@@ -160,3 +160,33 @@ th, td {
     text-align: left;
     transition: all 360ms ease;
 }
+
+@media(max-width: 910px) {
+    html {
+        header, .data-legend {
+            font-size: 14px;
+        }
+        &, .data-output, th, td {
+            font-size: 12px;
+        }
+        .data-legend {
+            .data-circle {
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
+    .data-output {
+        display: flex;
+        flex-direction: column;
+        padding-top: 30px;
+        .data-info {
+            margin-left: 0;
+            margin-top: 20px;
+            min-height: 240px;
+        }
+        .social-media-icons {
+            bottom: 15px;
+        }
+    }
+}
