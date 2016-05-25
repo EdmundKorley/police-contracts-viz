@@ -57,7 +57,6 @@ export default class Output extends Component {
         return [reviews, reviewDiv, reviewPolyDivs, text, textToShow, tweetShare, fbShare];
     }
     render() {
-        console.log(this.props.ids);
         let idToPass = this.props.ids[this.props.ids.length - 1];
         let [reviews, reviewDiv, reviewPolyDivs, text, textToShow, tweetShare, fbShare] = this.getDivs(idToPass);
         return <div>
