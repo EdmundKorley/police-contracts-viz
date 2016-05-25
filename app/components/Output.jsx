@@ -12,35 +12,32 @@ export default class Output extends Component {
         this.setActive = this.setActive.bind(this);
     }
     setActive(id) {
-        if (Number(id)) {
-            // console.log(this.state.activeID);
-            this.setState({activeID: Number(id)});
-        }
+        // console.log(this.state.activeID);
+        this.setState({activeID: Number(id)});
     }
     render() {
         const { ids } = this.props;
         const setActive = this.setActive;
-        const active_id = this.state.activeID;
+        const active_id_initial = ids[ids.length - 1];
+        const active_id_state = this.state.activeID;
         let reviews = ids.map((id) => directory[id]);
         let texts = reviews.map((review) => [review['Contract Language'], Number(review['Unique identifier'])]);
         let textsToShow = texts.map((text) => [truncate(text[0], 200), text[1]]);
         let textToShow, text;
         for (var i = 0; i < textsToShow.length; i++) {
-            if (textsToShow[i][1] == this.state.activeID) {
+            if (textsToShow[i][1] == active_id_state || textsToShow[i][1] == active_id_initial) {
                 textToShow = textsToShow[i][0];
                 text = texts[i][0];
             }
         }
-        console.log(textToShow);
         let reviewDivIndex;
         let reviewDivs = reviews.map((review, index) => {
-            if (review['Unique identifier'] == active_id) {
+            if (review['Unique identifier'] == active_id_initial || review['Unique identifier'] == active_id_state) {
                 reviewDivIndex = index;
-                // console.log('REVIEW', reviewDivIndex);
             }
             return Object.keys(review).map((key) => {
                 if (key != 'Contract Language') {
-                    let reviewToShow = truncate(review[key], 30)
+                    let reviewToShow = truncate(review[key], 30);
                     return <tr>
                         <th className="data-row-header">{key}</th>
                         <td className={reviewToShow.length == review[key].length ? "data-no" : "data-no data-tooltip"}>
@@ -61,7 +58,7 @@ export default class Output extends Component {
             <div className="data-output">
                 <table>
                     <tbody>
-                        {reviewDivs[reviewDivIndex]}
+                        { reviewDivs[reviewDivIndex] }
                     </tbody>
                 </table>
                 <div className="data-info">
@@ -105,7 +102,7 @@ export default class Output extends Component {
             </div>
             <div className="data-output-pool">
                 {
-                    reviews.map((review) => <div onClick={() => setActive(review['Unique identifier'])} className="data-choose">{ review['Contract City/State'] }</div>)
+                    reviews.map((review) => <div onClick={() => setActive(review['Unique identifier'])} className="data-choose">{ review['Contract City/State'] } - { review['Unique identifier'] }</div>)
                 }
             </div>
         </div>

@@ -14,19 +14,31 @@ export default class Base extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     resetURL(ids) {
-        const pathURL = window.location.pathname + '?ids=' + ids.join(",");
+        const idString = ids.join(",");
+        let pathURL;
+        if (idString) {
+            pathURL = window.location.pathname + '?ids=' + idString;
+        } else {
+            pathURL = window.location.pathname;
+        }
         window.history.pushState({}, 'Police Contracts - Campaign Zero', pathURL);
     }
     handleClick(ids) {
-        let a = this.state.ids.concat([ids]).filter(n => typeof n == 'number');
-        let new_ids = Array.from(new Set(a));
+        let newIds = [];
+        let existingIds = this.state.ids;
+        // If ids in already in our state, remove it from our list. For a mock toggle effect.
+        ids.forEach((id) => {
+            if (!existingIds.indexOf(id) > -1) {
+                if (id < 532 && id > 0 && typeof id == 'number') {
+                    newIds.push(id)
+                };
+            }
+        });
+        newIds = Array.from(new Set(newIds));
+        console.log('Almost there', newIds);
 
-        if (new_ids.length > 4) {
-            new_ids = new_ids.slice(Math.max(new_ids.length - 4, 1));
-        }
-
-        this.resetURL(new_ids);
-        this.setState({ids: new_ids});
+        this.resetURL(newIds);
+        this.setState({ids: newIds});
     }
     render() {
         return <div className="data-base">

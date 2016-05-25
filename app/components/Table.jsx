@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 import headers from './utils/headers';
 import { truncate } from './utils/handy';
 var contracts = require('json!./utils/rehash.json');
-var directory = require('json!./utils/directory.json');
+
+function allProvisions(category, state) {
+    let stateList = contracts[state];
+    let results = [];
+    for (var i = 0; i < stateList.length; i++) {
+        // if entry exists that matches category and state, push to our results div
+        if (stateList[i]['General Coding'] == category) {
+            results.push(stateList[i]);
+        }
+    }
+    return results.map((result) => parseInt(result['Unique identifier']));
+}
 
 export default class Table extends Component {
     constructor(props) {
@@ -35,8 +46,10 @@ export default class Table extends Component {
                 // Use index of header match to determine index of corresponding id
                 const uniqueID = contractIds[headerIndex];
                 const isIdOfInterest = ids.indexOf(uniqueID) > -1;
+                const polyIds = allProvisions(header, dept);
+                // console.log(polyIds);
                 if (isHeaderOfInterest) {
-                    contractDivs.push(<td className={isIdOfInterest ? 'data-info' : 'data-yes'} onClick={() => handleClick(uniqueID) }> </td>);
+                    contractDivs.push(<td className={isIdOfInterest ? 'data-info' : 'data-yes'} onClick={() => handleClick(polyIds) }> </td>);
                 } else {
                     contractDivs.push(<td className='data-no'></td>);
                 }
