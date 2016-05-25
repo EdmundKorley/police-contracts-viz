@@ -1,7 +1,13 @@
+var webpackConfig = require('./webpack.config');
+
 module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
+        // webpack
+        webpack: {
+            react: webpackConfig
+        },
         // Compiles our SCSS to CSS
         sass: {
             options: {
@@ -38,14 +44,19 @@ module.exports = function(grunt) {
             css: {
                 files: 'stylesheets/**/*.scss',
                 tasks: ['sass', 'postcss']
+            },
+            js: {
+                files: ['data/*', 'app/*'],
+                tasks: ['webpack']
             }
         }
     });
 
-    // Load the plugin that provides the "sass" and "postcss" tasks.
+    // Load the plugins that provides the tasks fxnality.
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-webpack');
 
     // Default task(s)
     grunt.registerTask('default', ['watch']);
