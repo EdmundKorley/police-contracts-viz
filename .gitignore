@@ -1,3 +1,4 @@
 node_modules
 .localized
 npm-debug.log
+data/
