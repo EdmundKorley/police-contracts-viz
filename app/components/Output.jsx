@@ -51,7 +51,7 @@ export default class Output extends Component {
                                 .map((review) => <div onClick={() => setActive(review['Unique identifier'])} className="data-choose">{ review['Contract City/State'] } - { review['Unique identifier'] }</div>)
 
         const host = window.location.href;
-        let tweetShare = "https://twitter.com/home?status=" + truncate(`${host} - section ${reviews[0]['Contract Section'].toLowerCase()} of ${reviews[0]['Contract City/State'].toLowerCase()} ${reviews[0]['Specific Impact of Provision'].toLowerCase()}`, 106) + "%20%23campaignzero%20%23policecontracts";
+        let tweetShare = "https://twitter.com/home?status=" + truncate(`${host} - section ${reviews[0]['Contract Section'].toLowerCase()} of ${reviews[0]['Contract City/State'].toLowerCase()} ${reviews[0]['Specific Impact of Provision'].toLowerCase()}`, 137) + "%20%23campaignzero%20%23policecontracts";
         let fbShare = "https://www.facebook.com/sharer/sharer.php?u=" + host;
 
         return [reviews, reviewDiv, reviewPolyDivs, text, textToShow, tweetShare, fbShare];
