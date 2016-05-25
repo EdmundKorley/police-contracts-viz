@@ -3,6 +3,8 @@ import headers from './utils/headers';
 import { truncate } from './utils/handy';
 var contracts = require('json!./utils/rehash.json');
 
+// In our table, a given x,y ('General Coding', 'Contract City/State') can have multiple provisions,
+// this table returns the unique identifiers of these confounding provisions
 function allProvisions(category, state) {
     let stateList = contracts[state];
     let results = [];
@@ -20,6 +22,7 @@ export default class Table extends Component {
         super(props);
         this.getContractsDivs = this.getContractsDivs.bind(this);
     }
+    // This massive function (to be modularized and made more sensible) builds the table rows of data
     getContractsDivs(getStates, ids, handleClick) {
         const divs = Object.keys(contracts).map((dept) => {
             let sign = dept.toLowerCase().includes('bill of rights');
@@ -72,10 +75,12 @@ export default class Table extends Component {
 
         const { handleClick, ids } = this.props;
 
+        // We build the headers
         const codingHeaders = [<th className="data-out-row-header"></th>].concat(headers.map((header) => {
             return <th className='data-out-col-header'>{header}</th>
         }));
 
+        // Here we seperate city and state rows to make them separate in the table
         const contractDivsState = this.getContractsDivs(false, ids, handleClick);
         const contractDivsCity = this.getContractsDivs(true, ids, handleClick);
 

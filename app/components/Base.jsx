@@ -5,6 +5,10 @@ import Output from './Output.jsx';
 export default class Base extends Component {
     constructor(props) {
         super(props);
+        // Here we pull the URL to see if there are any query params,
+        // if so we incorporate it into our state
+        // P.S. We are not going for a real routing solution, i.e. react-router,
+        // because of incompatibility with GitHub static pages hosting
         let params = window.location.search || '?ids=349';
         let query = params.substring(5, params.length);
         let query_mod = query.split(',').map((num) => Number(num));
@@ -13,6 +17,7 @@ export default class Base extends Component {
         }
         this.handleClick = this.handleClick.bind(this);
     }
+    // We update the URL upon changes to our state
     resetURL(ids) {
         const idString = ids.join(",");
         let pathURL;
@@ -23,6 +28,9 @@ export default class Base extends Component {
         }
         window.history.pushState({}, 'Police Contracts - Campaign Zero', pathURL);
     }
+    // Here we take unique identifiers (ids) of police contracts and feed it into our state,
+    // excluding duplicates and putting id of interest at end of new ids array
+    // (this is for <Output />'s functionality later downstream)
     handleClick(ids) {
         let newIds = [];
         let leadId = ids[ids.length - 1];
@@ -37,7 +45,7 @@ export default class Base extends Component {
         });
         newIds = Array.from(new Set(newIds));
         newIds = [...newIds, leadId];
-        
+
         this.resetURL(newIds);
         this.setState({ids: newIds});
     }
