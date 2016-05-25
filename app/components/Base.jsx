@@ -14,7 +14,7 @@ export default class Base extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     resetURL(ids) {
-        const pathURL = '/?ids=' + ids.join(",");
+        const pathURL = window.location.pathname + '?ids=' + ids.join(",");
         window.history.pushState({}, 'Police Contracts - Campaign Zero', pathURL);
     }
     handleClick(ids) {

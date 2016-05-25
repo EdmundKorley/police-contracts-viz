@@ -13,7 +13,7 @@ export default class Output extends Component {
     }
     setActive(id) {
         if (Number(id)) {
-            console.log(this.state.activeID);
+            // console.log(this.state.activeID);
             this.setState({activeID: Number(id)});
         }
     }
@@ -36,7 +36,7 @@ export default class Output extends Component {
         let reviewDivs = reviews.map((review, index) => {
             if (review['Unique identifier'] == active_id) {
                 reviewDivIndex = index;
-                console.log('REVIEW', reviewDivIndex);
+                // console.log('REVIEW', reviewDivIndex);
             }
             return Object.keys(review).map((key) => {
                 if (key != 'Contract Language') {
