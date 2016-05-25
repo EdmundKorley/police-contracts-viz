@@ -1,22 +1,13 @@
-export default [
-    // 'Limits Discipline',
-    // 'Erases Misconduct Records',
-    // 'Disqualifies Complaints',
-    // 'Limits Oversight',
-    // 'Delays Interrogations',
-    // 'Limits Interrogations',
-    // 'Gives Officers Access to Information',
-    // 'City Pays Misconduct Settlements',
-    // 'Paid Leave for Misconduct',
-    // 'City Pays Interrogation Costs',
-    // 'City Pays for Legal Defense',
-    // 'Limits Transparency'
-    'City Pays for Misconduct',
-    'Delays Interrogations',
-    'Disqualifies Complaints',
-    'Erases misconduct records',
-    'Gives officers unfair access to information',
-    'Limits Discipline',
-    'Limits Interrogations',
-    'Limits Oversight'
-];
+var provisions = require('json!./provisions.json');
+
+var headers = Object.keys(provisions).sort((a, b) => {
+    if (a > b) {
+        return 1;
+    }
+    if (b > a) {
+        return -1;
+    }
+    return 0;
+});
+
+export default headers;

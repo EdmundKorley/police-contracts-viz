@@ -106,12 +106,26 @@
     }
 }
 
+.data-output-pool {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1024px;
+    .data-choose {
+        background-color: black;
+        color: $data-no;
+        border-radius: 2px;
+        padding: 0.4em 1.2em;
+        cursor: pointer;
+    }
+}
+
 .data-tooltip {
     position: relative;
     span {
         display: none;
         font-size: 14px;
         text-align: left;
+        max-width: 200px;
     }
     &:hover span, &:focus span {
         display:block;
@@ -119,8 +133,8 @@
         z-index: 1000;
         top:1em;
         left:1.5em;
-        padding: 0.2em 0.6em;
-        border-radius: 7px;
+        padding: 0.4em 1.2em;
+        border-radius: 2px;
         background-color: black;
         color: $data-no;
     }

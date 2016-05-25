@@ -2,23 +2,25 @@ import React, { Component } from 'react';
 import headers from './utils/headers';
 import { truncate } from './utils/handy';
 var contracts = require('json!./utils/rehash.json');
+var directory = require('json!./utils/directory.json');
 
 export default class Table extends Component {
     constructor(props) {
         super(props);
         this.getContractsDivs = this.getContractsDivs.bind(this);
     }
-    getContractsDivs(getStates, id, handleClick) {
+    getContractsDivs(getStates, ids, handleClick) {
         const divs = Object.keys(contracts).map((dept) => {
             let sign = dept.toLowerCase().includes('bill of rights');
             if (sign == getStates) return false
-            let contractPolices = contracts[dept];
-            let contractCoding = contractPolices.map((policy) => {
-                return policy['General Coding'].toLowerCase();
-            });
-            let contractIds = contractPolices.map((policy) => {
-                return policy['Unique identifier'];
-            });
+            let contractPolicies = contracts[dept];
+            let contractCoding = [], contractIds = [];
+            for (var i = 0; i < contractPolicies.length; i++) {
+                contractCoding.push(contractPolicies[i]['General Coding'].toLowerCase())
+            }
+            for (var i = 0; i < contractPolicies.length; i++) {
+                contractIds.push(Number(contractPolicies[i]['Unique identifier']))
+            }
             let rowHeader = truncate(dept, 21);
             let contractDivs = [
                 <th className={rowHeader.length == dept.length ? 'data-row-header' : 'data-row-header data-tooltip'}>
@@ -26,16 +28,19 @@ export default class Table extends Component {
                     <span>{rowHeader.length == dept.length ? '' : dept }</span>
                 </th>
             ];
-            headers.forEach((header) => {
-                let contractIndex = contractCoding.indexOf(header.toLowerCase());
-                let uniqueID = contractIds[contractIndex];
-                let contract = contracts[uniqueID];
-                if (contractIndex > -1) {
-                    contractDivs.push(<td className={id == uniqueID ? 'data-info' : 'data-yes'} onClick={() => { handleClick(uniqueID) }}> </td>);
+            for (let i = 0; i < headers.length; i++) {
+                const header = headers[i];
+                const headerIndex = contractCoding.indexOf(header.toLowerCase());
+                const isHeaderOfInterest = headerIndex > -1;
+                // Use index of header match to determine index of corresponding id
+                const uniqueID = contractIds[headerIndex];
+                const isIdOfInterest = ids.indexOf(uniqueID) > -1;
+                if (isHeaderOfInterest) {
+                    contractDivs.push(<td className={isIdOfInterest ? 'data-info' : 'data-yes'} onClick={() => handleClick(uniqueID) }> </td>);
                 } else {
-                    contractDivs.push(<td className='data-no'> </td>);
+                    contractDivs.push(<td className='data-no'></td>);
                 }
-            });
+            };
             return <tr>
                 {contractDivs}
             </tr>
@@ -52,14 +57,14 @@ export default class Table extends Component {
     }
     render() {
 
-        const { handleClick, id } = this.props;
+        const { handleClick, ids } = this.props;
 
         const codingHeaders = [<th className="data-out-row-header"></th>].concat(headers.map((header) => {
             return <th className='data-out-col-header'>{header}</th>
         }));
 
-        const contractDivsState = this.getContractsDivs(false, id, handleClick);
-        const contractDivsCity = this.getContractsDivs(true, id, handleClick);
+        const contractDivsState = this.getContractsDivs(false, ids, handleClick);
+        const contractDivsCity = this.getContractsDivs(true, ids, handleClick);
 
         return <div className='data-contracts'>
             <div className="data-legend">
@@ -84,9 +89,9 @@ export default class Table extends Component {
                 </div>
                 <div className="data-inner-table">
                     <table>
-                        {contractDivsState}
+                        { contractDivsState }
                         <br></br>
-                        {contractDivsCity}
+                        { contractDivsCity }
                     </table>
                 </div>
             </table>

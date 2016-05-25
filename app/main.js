@@ -1,12 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Base from './components/Base.jsx';
-import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
-render(
-    // <Router history={browserHistory}>
-    //   <Route path="/" component={Base}>
-    //   </Route>
-    // </Router>
-    <Base />
-    , document.getElementById('contracts-table'));
+const entryDiv = document.getElementById('contracts-table');
+
+render(<Base />, entryDiv);
