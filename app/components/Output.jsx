@@ -47,7 +47,7 @@ export default class Output extends Component {
                         truncReview = truncate(review[key], 21);
                     } else {
                         truncKey = truncate(key, 50);
-                        truncReview = truncate(review[key], 33);
+                        truncReview = truncate(review[key], 60);
                     }
                     return <tr>
                         <th className="data-row-header">{truncKey}</th>
