@@ -23,7 +23,7 @@ export default class Output extends Component {
         // Truncated version of excessively long texts shown and full version dormant in a modal
         let reviews = ids.map((id) => directory[id]);
         let texts = reviews.map((review) => [review['Contract Language'], Number(review['Unique identifier'])]);
-        let textsToShow = texts.map((text) => [truncate(text[0], 200), text[1]]);
+        let textsToShow = texts.map((text) => [truncate(text[0], 150), text[1]]);
         let textToShow, text;
         for (var i = 0; i < textsToShow.length; i++) {
             if (textsToShow[i][1] == global_id) {
@@ -41,12 +41,19 @@ export default class Output extends Component {
             }
             return Object.keys(review).map((key) => {
                 if (key != 'Contract Language') {
-                    let reviewToShow = truncate(review[key], 30);
+                    let truncKey, truncReview;
+                    if (window.screen.availWidth < 500) {
+                        truncKey = truncate(key, 23);
+                        truncReview = truncate(review[key], 21);
+                    } else {
+                        truncKey = truncate(key, 50);
+                        truncReview = truncate(review[key], 33);
+                    }
                     return <tr>
-                        <th className="data-row-header">{key}</th>
-                        <td className={reviewToShow.length == review[key].length ? "data-no" : "data-no data-tooltip"}>
-                            {reviewToShow}
-                            <span>{reviewToShow.length == review[key].length ? "" : review[key]}</span>
+                        <th className="data-row-header">{truncKey}</th>
+                        <td className={truncReview.length == review[key].length ? "data-no" : "data-no data-tooltip"}>
+                            {truncReview}
+                            <span>{truncReview.length == review[key].length ? "" : review[key]}</span>
                         </td>
                     </tr>
                 }
@@ -120,7 +127,7 @@ export default class Output extends Component {
                     </div>
                 </div>
             </div>
-            
+
             <div className="data-output-pool">
                 { reviewPolyDivs }
             </div>

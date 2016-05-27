@@ -35,7 +35,13 @@ export default class Table extends Component {
             for (var i = 0; i < contractPolicies.length; i++) {
                 contractIds.push(Number(contractPolicies[i]['Unique identifier']))
             }
-            let rowHeader = truncate(dept, 21);
+            let rowHeader;
+            // Responsive! Kinda
+            if (window.screen.availWidth < 500) {
+                rowHeader = truncate(dept, 10);
+            } else {
+                rowHeader = truncate(dept, 33);
+            }
             let contractDivs = [
                 <th className={rowHeader.length == dept.length ? 'data-row-header' : 'data-row-header data-tooltip'}>
                     { rowHeader }
@@ -80,6 +86,13 @@ export default class Table extends Component {
             return <th className='data-out-col-header'>{header}</th>
         }));
 
+        const hiddenHeaders = [<th className="data-row-header"></th>].concat(headers.map((header) => {
+            return <th className='hidden-th data-tooltip'>
+                        {truncate(header, 3)}
+                        <span>{header}</span>
+                    </th>
+        }));
+
         // Here we seperate city and state rows to make them separate in the table
         const contractDivsState = this.getContractsDivs(false, ids, handleClick);
         const contractDivsCity = this.getContractsDivs(true, ids, handleClick);
@@ -99,14 +112,17 @@ export default class Table extends Component {
                     <h4>Details on language</h4>
                 </div>
             </div>
-            <table className="data-outer-table">
-                <div>
+            <table className="table table-responsive data-outer-table">
+                <div className="global-headers">
                     <tr>
-                        {codingHeaders}
+                        { codingHeaders }
                     </tr>
                 </div>
                 <div className="data-inner-table">
                     <table>
+                        <tr className="hidden-headers">
+                            { hiddenHeaders }
+                        </tr>
                         { contractDivsState }
                         <br></br>
                         { contractDivsCity }

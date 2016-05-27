@@ -11,7 +11,7 @@ Install needed dependencies (react, babel, grunt, etc):
 
 `npm install`
 
-Build app in one bash session (which runs grunt, which in turn runs other build tools)
+Build app in one bash session (which runs grunt, which in turn runs other build tools upon detected file changes)
 
 `npm run build`
 
