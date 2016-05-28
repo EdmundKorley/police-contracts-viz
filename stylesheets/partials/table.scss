@@ -199,11 +199,12 @@ table th[class*="col-"] {
     .data-outer-table {
         table-layout: fixed;
     }
-    .data-out-row-header {
+    th.data-out-row-header {
         min-width: 160px;
     }
     .data-out-col-header {
-        max-width: 90px;
+        width: 90px;
+        text-align: center;
     }
     .data-inner-table {
         height: 500px;
@@ -342,7 +343,7 @@ table th[class*="col-"] {
         text-align: left;
         max-width: 200px;
     }
-    &:hover span, &:focus span {
+    &:hover span, &:focus span, &:active span {
         display:block;
         position:absolute;
         z-index: 1000;
@@ -375,6 +376,9 @@ th, td {
                 border-radius: 0;
                 margin-left: 10px;
             }
+        }
+        .data-out-col-header {
+            text-align: left;
         }
     }
     .data-output {
