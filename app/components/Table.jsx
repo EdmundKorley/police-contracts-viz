@@ -54,6 +54,8 @@ export default class Table extends Component {
             // Responsive! Kinda
             if ($(document).width() < 600) {
                 rowHeader = truncate(dept, 3);
+            } else if ($(document).width() < 1000) {
+                rowHeader = truncate(dept, 21);
             } else {
                 rowHeader = truncate(dept, 29);
             }
