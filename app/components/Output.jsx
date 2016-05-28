@@ -37,7 +37,7 @@ export default class Output extends Component {
         // We generate a truncated version of these texts too, to avoid making app too wanting for space
         // Truncated version of excessively long texts shown and full version dormant in a modal
         let reviews = ids.map((id) => directory[id]);
-        let texts = reviews.map((review) => [review['Contract Language'], Number(review['Unique identifier'])]);
+        let texts = reviews.map((review) => [review['Policy Language'], Number(review['Unique identifier'])]);
         let textsToShow = texts.map((text) => [truncate(text[0], 150), text[1]]);
         let textToShow, text;
         for (var i = 0; i < textsToShow.length; i++) {
@@ -47,7 +47,7 @@ export default class Output extends Component {
             }
         }
 
-        // Here we pull out other key info, except 'Contract Language' which will be shown separately,
+        // Here we pull out other key info, except 'Policy Language' which will be shown separately,
         // and render divs out of them for a small table below the main table
         let reviewDivIndex;
         let reviewDivs = reviews.map((review, index) => {
@@ -55,7 +55,7 @@ export default class Output extends Component {
                 reviewDivIndex = index;
             }
             return Object.keys(review).map((key) => {
-                if (key != 'Contract Language') {
+                if (key != 'Policy Language') {
                     let truncKey, truncReview;
                     if ($(document).width() < 600) {
                         truncKey = truncate(key, 23);
@@ -80,11 +80,12 @@ export default class Output extends Component {
         // For multiple provisions at a given x,y we general multiple legend-like divs
         let reviewPolyDivs = reviews
                                 .sort((r1, r2) => { if (Number(r1['Unique identifier']) > Number(r2['Unique identifier'])) { return 1 } else if (Number(r1['Unique identifier']) < Number(r2['Unique identifier'])) { return -1 }; return 0; })
-                                .map((review) => <div onClick={() => setActive(review['Unique identifier'])} className="data-choose">{ review['Contract City/State'] } - { review['Unique identifier'] }</div>)
+                                .map((review) => <div onClick={() => setActive(review['Unique identifier'])} className="data-choose">{ review['City/State'] } - { review['Unique identifier'] }</div>)
 
         // We generate content with our state-driven URL for social media share functionality
         const host = window.location.href;
-        let tweetShare = "https://twitter.com/home?status=" + truncate(`${host} - section ${reviews[0]['Contract Section'].toLowerCase()} of ${reviews[0]['Contract City/State'].toLowerCase()} ${reviews[0]['Specific Impact of Provision'].toLowerCase()}`, 137) + "%20%23campaignzero%20%23policecontracts";
+        const tweetBody = host + ' ' + reviews[0]['City/State'].toLowerCase() + ' - ' + reviews[0]['Specific Impact of Policy'].toLowerCase();
+        let tweetShare = "https://twitter.com/home?status=" + truncate(tweetBody, 137) + "%20%23campaignzero%20%23policecontracts";
         let fbShare = "https://www.facebook.com/sharer/sharer.php?u=" + host;
 
         // Massive export, bad I know 😅, to be refactored. This whole component in fact ...
@@ -103,7 +104,7 @@ export default class Output extends Component {
 
                 <div className="data-info">
 
-                    <h3>Contract Language</h3>
+                    <h3>Policy Language</h3>
                     <p className={textToShow.length == text.length ? "" : "data-tooltip"}>
                         {textToShow}
                         <span>{textToShow.length == text.length ? "" : text}</span>

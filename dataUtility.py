@@ -4,7 +4,7 @@ import json
 def dataByState(data):
     new = {}
     for item in data:
-        state = item['Contract City/State']
+        state = item['City/State']
         state = state.strip()
         sign = new.get(state, None)
         if sign is None:
@@ -21,10 +21,10 @@ def dataByUniq(data):
         new[int(id)] = item
     return new
 
-def dataByProvisions(data):
+def dataByCategory(data):
     new = {}
     for item in data:
-        coding = item['General Coding']
+        coding = item['Category']
         sign = new.get(coding, None)
         if sign is None:
             new[coding] = [item]
@@ -39,7 +39,7 @@ with open('data/content.csv') as csvFile:
         item.pop('', None)
     newData = dataByState(data)
     uniqData = dataByUniq(data)
-    provData = dataByProvisions(data)
+    provData = dataByCategory(data)
     with open('app/components/utils/rehash.json', 'w') as f:
         json.dump(newData, f, ensure_ascii=False, indent = 2, separators=(',', ': '))
     with open('app/components/utils/directory.json', 'w') as f:

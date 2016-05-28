@@ -4,14 +4,14 @@ import { truncate } from './utils/handy';
 import $ from 'jquery';
 var contracts = require('json!./utils/rehash.json');
 
-// In our table, a given x,y ('General Coding', 'Contract City/State') can have multiple provisions,
+// In our table, a given x,y ('Category', 'City/State') can have multiple provisions,
 // this table returns the unique identifiers of these confounding provisions
 function allProvisions(category, state) {
     let stateList = contracts[state];
     let results = [];
     for (var i = 0; i < stateList.length; i++) {
         // if entry exists that matches category and state, push to our results div
-        if (stateList[i]['General Coding'] == category) {
+        if (stateList[i]['Category'] == category) {
             results.push(stateList[i]);
         }
     }
@@ -45,7 +45,7 @@ export default class Table extends Component {
             let contractPolicies = contracts[dept];
             let contractCoding = [], contractIds = [];
             for (var i = 0; i < contractPolicies.length; i++) {
-                contractCoding.push(contractPolicies[i]['General Coding'].toLowerCase())
+                contractCoding.push(contractPolicies[i]['Category'].toLowerCase())
             }
             for (var i = 0; i < contractPolicies.length; i++) {
                 contractIds.push(Number(contractPolicies[i]['Unique identifier']))
@@ -53,7 +53,7 @@ export default class Table extends Component {
             let rowHeader;
             // Responsive! Kinda
             if ($(document).width() < 600) {
-                rowHeader = truncate(dept, 3);
+                rowHeader = truncate(dept, 5);
             } else if ($(document).width() < 1000) {
                 rowHeader = truncate(dept, 21);
             } else {
@@ -105,7 +105,7 @@ export default class Table extends Component {
 
         const hiddenHeaders = [<th className="data-row-header"></th>].concat(headers.map((header) => {
             return <th className='hidden-th data-tooltip'>
-                        {truncate(header, 3)}
+                        {truncate(header, 30)}
                         <span>{header}</span>
                     </th>
         }));

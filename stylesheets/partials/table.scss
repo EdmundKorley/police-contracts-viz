@@ -153,7 +153,7 @@ table th[class*="col-"] {
     width: 100%;
     margin-bottom: 15px;
     overflow-y: hidden;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -ms-overflow-style: -ms-autohiding-data-data-scrollbar;
   }
   .table-responsive > .table {
     margin-bottom: 0;
@@ -200,11 +200,11 @@ table th[class*="col-"] {
         table-layout: fixed;
     }
     th.data-out-row-header {
-        min-width: 160px;
+        min-width: 170px;
     }
-    .data-out-col-header {
-        width: 90px;
-        text-align: center;
+    th.data-out-col-header {
+        max-width: 90px;
+        overflow-wrap: break-word;
     }
     .data-inner-table {
         height: 500px;
@@ -398,6 +398,7 @@ th, td {
 
 .hidden-headers {
     display: none;
+    overflow-wrap: break-word;
 }
 
 @media (max-width: 730px) {
@@ -406,6 +407,9 @@ th, td {
     }
     .hidden-headers {
         display: table-row;
+        th {
+            max-width: 35px;
+        }
     }
     .data-output-pool {
         margin-top: 65px;
