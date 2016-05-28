@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import headers from './utils/headers';
 import { truncate } from './utils/handy';
+import $ from 'jquery';
 var contracts = require('json!./utils/rehash.json');
 
 // In our table, a given x,y ('General Coding', 'Contract City/State') can have multiple provisions,
@@ -22,6 +23,20 @@ export default class Table extends Component {
         super(props);
         this.getContractsDivs = this.getContractsDivs.bind(this);
     }
+    componentDidMount() {
+        // Re-render on resize
+        let resize = this.props.handleClick;
+        window.addEventListener("resize", () => {
+            resize();
+        });
+    }
+    componentWillUnmount() {
+        let resize = this.props.handleClick;
+        // Unplug resize event listener
+        window.removeEventListener("resize", () => {
+            resize();
+        });
+    }
     // This massive function (to be modularized and made more sensible) builds the table rows of data
     getContractsDivs(getStates, ids, handleClick) {
         const divs = Object.keys(contracts).map((dept) => {
@@ -37,10 +52,10 @@ export default class Table extends Component {
             }
             let rowHeader;
             // Responsive! Kinda
-            if (window.screen.availWidth < 500) {
-                rowHeader = truncate(dept, 10);
+            if ($(document).width() < 600) {
+                rowHeader = truncate(dept, 3);
             } else {
-                rowHeader = truncate(dept, 33);
+                rowHeader = truncate(dept, 29);
             }
             let contractDivs = [
                 <th className={rowHeader.length == dept.length ? 'data-row-header' : 'data-row-header data-tooltip'}>

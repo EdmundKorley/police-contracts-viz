@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import headers from './utils/headers';
 import { truncate } from './utils/handy';
+import $ from 'jquery';
 var directory = require('json!./utils/directory.json');
 
 export default class Output extends Component {
@@ -8,6 +9,20 @@ export default class Output extends Component {
         super(props);
         this.setActive = this.setActive.bind(this);
         this.getDivs= this.getDivs.bind(this);
+    }
+    componentDidMount() {
+        // Re-render on resize
+        let resize = this.props.handleClick;
+        window.addEventListener("resize", () => {
+            resize();
+        });
+    }
+    componentWillUnmount() {
+        let resize = this.props.handleClick;
+        // Unplug resize event listener
+        window.removeEventListener("resize", () => {
+            resize();
+        });
     }
     setActive(id) {
         const { handleClick, ids } = this.props;
@@ -42,7 +57,7 @@ export default class Output extends Component {
             return Object.keys(review).map((key) => {
                 if (key != 'Contract Language') {
                     let truncKey, truncReview;
-                    if (window.screen.availWidth < 500) {
+                    if ($(document).width() < 500) {
                         truncKey = truncate(key, 23);
                         truncReview = truncate(review[key], 21);
                     } else {

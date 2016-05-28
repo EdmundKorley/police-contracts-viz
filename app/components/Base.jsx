@@ -31,7 +31,8 @@ export default class Base extends Component {
     // Here we take unique identifiers (ids) of police contracts and feed it into our state,
     // excluding duplicates and putting id of interest at end of new ids array
     // (this is for <Output />'s functionality later downstream)
-    handleClick(ids) {
+    handleClick(_ids) {
+        let ids = _ids || this.state.ids; // For dummy resize re-rendering
         let newIds = [];
         let leadId = ids[ids.length - 1];
         let existingIds = this.state.ids;
