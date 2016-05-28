@@ -57,7 +57,7 @@ export default class Output extends Component {
             return Object.keys(review).map((key) => {
                 if (key != 'Contract Language') {
                     let truncKey, truncReview;
-                    if ($(document).width() < 500) {
+                    if ($(document).width() < 600) {
                         truncKey = truncate(key, 23);
                         truncReview = truncate(review[key], 21);
                     } else {
