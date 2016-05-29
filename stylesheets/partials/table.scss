@@ -207,7 +207,7 @@ table th[class*="col-"] {
         overflow-wrap: break-word;
     }
     .data-inner-table {
-        height: 500px;
+        height: 350px;
         overflow-y: auto;
     }
     th.data-row-header {
@@ -381,9 +381,6 @@ th, td {
             text-align: left;
         }
     }
-    .data-contracts .data-inner-table {
-        height: 400px;
-    }
     .data-output {
         display: flex;
         flex-direction: column;
@@ -408,8 +405,5 @@ th, td {
 @media (max-width: 599px) {
     .data-contracts th.data-row-header {
         min-width: 35px;
-    }
-    .data-contracts .data-inner-table {
-        height: 300px;
     }
 }

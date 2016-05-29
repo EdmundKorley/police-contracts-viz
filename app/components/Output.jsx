@@ -83,7 +83,7 @@ export default class Output extends Component {
                                 .map((review) => <div onClick={() => setActive(review['Unique identifier'])} className="data-choose">{ review['City/State'] } - { review['Unique identifier'] }</div>)
 
         // We generate content with our state-driven URL for social media share functionality
-        const host = window.location.href;
+        const host = document.referrer || window.location.href;
         const tweetBody = host + ' ' + reviews[0]['City/State'].toLowerCase() + ' - ' + reviews[0]['Specific Impact of Policy'].toLowerCase();
         let tweetShare = "https://twitter.com/home?status=" + truncate(tweetBody, 137) + "%20%23campaignzero%20%23policecontracts";
         let fbShare = "https://www.facebook.com/sharer/sharer.php?u=" + host;

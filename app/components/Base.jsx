@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Table from './Table.jsx';
 import Output from './Output.jsx';
+import { inIframe } from './utils/handy';
 
 export default class Base extends Component {
     constructor(props) {
@@ -16,6 +17,11 @@ export default class Base extends Component {
             ids: query_mod
         }
         this.handleClick = this.handleClick.bind(this);
+    }
+    componentDidMount() {
+        if (inIframe()) {
+            
+        }
     }
     // We update the URL upon changes to our state
     resetURL(ids) {
