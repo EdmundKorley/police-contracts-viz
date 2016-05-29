@@ -89,7 +89,6 @@ export default class Table extends Component {
                 const uniqueID = contractIds[headerIndex];
                 const isIdOfInterest = ids.indexOf(uniqueID) > -1;
                 const polyIds = allProvisions(header, dept);
-                // console.log(polyIds);
                 if (isHeaderOfInterest) {
                     contractDivs.push(<td className={isIdOfInterest ? 'data-info' : 'data-yes'} onClick={() => handleClick(polyIds) }> </td>);
                 } else {
@@ -116,8 +115,9 @@ export default class Table extends Component {
 
         // We build the headers
         const codingHeaders = [<th style={{}} className="data-out-row-header"></th>].concat(headers.map((header) => {
-            return <th className='data-out-col-header'>
+            return <th className='data-out-col-header data-tooltip'>
                 {header}
+                <span>{header}</span>
             </th>
         }));
 

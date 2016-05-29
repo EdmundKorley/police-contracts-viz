@@ -58,7 +58,7 @@ export default class Output extends Component {
                 if (key != 'Policy Language') {
                     let truncKey, truncReview;
                     if ($(document).width() < 600) {
-                        truncKey = truncate(key, 23);
+                        truncKey = truncate(key, 30);
                         truncReview = truncate(review[key], 21);
                     } else {
                         truncKey = truncate(key, 50);
@@ -66,7 +66,7 @@ export default class Output extends Component {
                     }
                     return <tr>
                         <th className="data-row-header">{truncKey}</th>
-                        <td className={truncReview.length == review[key].length ? "data-no" : "data-no data-tooltip"}>
+                        <td className={truncReview.length == review[key].length ? "data-no" : "data-tooltip data-no"}>
                             {truncReview}
                             <span>{truncReview.length == review[key].length ? "" : review[key]}</span>
                         </td>

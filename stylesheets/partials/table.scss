@@ -207,7 +207,7 @@ table th[class*="col-"] {
         overflow-wrap: break-word;
     }
     .data-inner-table {
-        height: 300px;
+        height: 500px;
         overflow-y: auto;
     }
     th.data-row-header {
@@ -367,7 +367,7 @@ th, td {
             font-size: 14px;
         }
         &, .data-output, th, td {
-            font-size: 12px;
+            font-size: 11px;
         }
         .data-legend {
             .data-circle {
@@ -380,6 +380,9 @@ th, td {
         .data-out-col-header {
             text-align: left;
         }
+    }
+    .data-contracts .data-inner-table {
+        height: 400px;
     }
     .data-output {
         display: flex;
@@ -406,7 +409,7 @@ th, td {
     .data-contracts th.data-row-header {
         min-width: 35px;
     }
-    .global-headers th {
-        font-size: 10px;
+    .data-contracts .data-inner-table {
+        height: 300px;
     }
 }
