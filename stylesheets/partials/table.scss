@@ -200,14 +200,14 @@ table th[class*="col-"] {
         table-layout: fixed;
     }
     th.data-out-row-header {
-        min-width: 170px;
+        min-width: 169px;
     }
     th.data-out-col-header {
         max-width: 90px;
         overflow-wrap: break-word;
     }
     .data-inner-table {
-        height: 500px;
+        height: 300px;
         overflow-y: auto;
     }
     th.data-row-header {
@@ -396,21 +396,7 @@ th, td {
     }
 }
 
-.hidden-headers {
-    display: none;
-    overflow-wrap: break-word;
-}
-
 @media (max-width: 730px) {
-    .global-headers {
-        display: none;
-    }
-    .hidden-headers {
-        display: table-row;
-        th {
-            max-width: 35px;
-        }
-    }
     .data-output-pool {
         margin-top: 65px;
     }
@@ -419,5 +405,8 @@ th, td {
 @media (max-width: 599px) {
     .data-contracts th.data-row-header {
         min-width: 35px;
+    }
+    .global-headers th {
+        font-size: 10px;
     }
 }

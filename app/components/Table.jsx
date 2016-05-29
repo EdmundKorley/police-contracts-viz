@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import headers from './utils/headers';
 import { truncate } from './utils/handy';
 import $ from 'jquery';
-var contracts = require('json!./utils/rehash.json');
+let contracts = require('json!./utils/rehash.json');
 
 // In our table, a given x,y ('Category', 'City/State') can have multiple provisions,
 // this table returns the unique identifiers of these confounding provisions
 function allProvisions(category, state) {
     let stateList = contracts[state];
     let results = [];
-    for (var i = 0; i < stateList.length; i++) {
+    for (let i = 0; i < stateList.length; i++) {
         // if entry exists that matches category and state, push to our results div
         if (stateList[i]['Category'] == category) {
             results.push(stateList[i]);
@@ -28,7 +28,23 @@ export default class Table extends Component {
         let resize = this.props.handleClick;
         window.addEventListener("resize", () => {
             resize();
+
+            // Fixed header responsiveness
+            const headerWidth = $('.data-inner-table th').width();
+            const dataWidth = $('.data-inner-table td').width();
+
+            $('.global-headers .data-out-row-header').css("min-width", headerWidth);
+            $('.global-headers .data-out-col-header').css("max-width", dataWidth);
+            console.log(headerWidth, dataWidth);
         });
+
+        // Fixed header responsiveness
+        const headerWidth = $('.data-inner-table th').width();
+        const dataWidth = $('.data-inner-table td').width();
+
+        $('.global-headers .data-out-row-header').css("min-width", headerWidth);
+        $('.global-headers .data-out-col-header').css("max-width", dataWidth);
+        console.log(headerWidth, dataWidth);
     }
     componentWillUnmount() {
         let resize = this.props.handleClick;
@@ -44,10 +60,10 @@ export default class Table extends Component {
             if (sign == getStates) return false
             let contractPolicies = contracts[dept];
             let contractCoding = [], contractIds = [];
-            for (var i = 0; i < contractPolicies.length; i++) {
+            for (let i = 0; i < contractPolicies.length; i++) {
                 contractCoding.push(contractPolicies[i]['Category'].toLowerCase())
             }
-            for (var i = 0; i < contractPolicies.length; i++) {
+            for (let i = 0; i < contractPolicies.length; i++) {
                 contractIds.push(Number(contractPolicies[i]['Unique identifier']))
             }
             let rowHeader;
@@ -99,15 +115,10 @@ export default class Table extends Component {
         const { handleClick, ids } = this.props;
 
         // We build the headers
-        const codingHeaders = [<th className="data-out-row-header"></th>].concat(headers.map((header) => {
-            return <th className='data-out-col-header'>{header}</th>
-        }));
-
-        const hiddenHeaders = [<th className="data-row-header"></th>].concat(headers.map((header) => {
-            return <th className='hidden-th data-tooltip'>
-                        {truncate(header, 30)}
-                        <span>{header}</span>
-                    </th>
+        const codingHeaders = [<th style={{}} className="data-out-row-header"></th>].concat(headers.map((header) => {
+            return <th className='data-out-col-header'>
+                {header}
+            </th>
         }));
 
         // Here we seperate city and state rows to make them separate in the table
@@ -129,6 +140,8 @@ export default class Table extends Component {
                     <h4>Details on language</h4>
                 </div>
             </div>
+
+            {/* Blah, all these dirty tricks for fixed table headers */}
             <table className="table table-responsive data-outer-table">
                 <div className="global-headers">
                     <tr>
@@ -137,9 +150,6 @@ export default class Table extends Component {
                 </div>
                 <div className="data-inner-table">
                     <table>
-                        <tr className="hidden-headers">
-                            { hiddenHeaders }
-                        </tr>
                         { contractDivsState }
                         <br></br>
                         { contractDivsCity }
