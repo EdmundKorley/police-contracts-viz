@@ -35,16 +35,17 @@ export default class Table extends Component {
 
             $('.global-headers .data-out-row-header').css("min-width", headerWidth);
             $('.global-headers .data-out-col-header').css("max-width", dataWidth);
-            console.log(headerWidth, dataWidth);
         });
 
         // Fixed header responsiveness
         const headerWidth = $('.data-inner-table th').width();
         const dataWidth = $('.data-inner-table td').width();
 
-        $('.global-headers .data-out-row-header').css("min-width", headerWidth);
-        $('.global-headers .data-out-col-header').css("max-width", dataWidth);
-        console.log(headerWidth, dataWidth);
+        if ($(document).width() < 1000) {
+            $('.global-headers .data-out-row-header').css("min-width", headerWidth);
+            $('.global-headers .data-out-col-header').css("max-width", dataWidth);
+        }
+
     }
     componentWillUnmount() {
         let resize = this.props.handleClick;
@@ -115,9 +116,8 @@ export default class Table extends Component {
 
         // We build the headers
         const codingHeaders = [<th style={{}} className="data-out-row-header"></th>].concat(headers.map((header) => {
-            return <th className='data-out-col-header data-tooltip'>
+            return <th className='data-out-col-header'>
                 {header}
-                <span>{header}</span>
             </th>
         }));
 

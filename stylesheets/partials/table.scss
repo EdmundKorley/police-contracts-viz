@@ -205,6 +205,8 @@ table th[class*="col-"] {
     th.data-out-col-header {
         max-width: 90px;
         overflow-wrap: break-word;
+        word-break: break-word;
+        hyphens: auto;
     }
     .data-inner-table {
         height: 350px;
@@ -367,7 +369,7 @@ th, td {
             font-size: 14px;
         }
         &, .data-output, th, td {
-            font-size: 11px;
+            font-size: 10px;
         }
         .data-legend {
             .data-circle {
@@ -405,5 +407,17 @@ th, td {
 @media (max-width: 599px) {
     .data-contracts th.data-row-header {
         min-width: 35px;
+    }
+}
+
+@media (max-width: 750px) {
+    html th.data-out-col-header, .data-contracts th.data-row-headera {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 500px) {
+    html th.data-out-col-header, .data-contracts th.data-row-header {
+        font-size: 8px;
     }
 }
