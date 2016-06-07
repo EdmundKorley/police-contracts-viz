@@ -41,7 +41,7 @@ export default class Table extends Component {
             $('.global-headers .data-out-col-header').css("max-width", dataWidth);
 
             resize();
-            reRender();
+            // reRender();
         });
 
         // Fixed header responsiveness
