@@ -345,9 +345,9 @@ table th[class*="col-"] {
         max-width: 200px;
     }
     &:hover span, &:focus span, &:active span {
-        display:block;
-        position:absolute;
-        z-index: 1000;
+        display: block;
+        position: absolute;
+        z-index: 9999;
         top:1em;
         left:1.5em;
         padding: 0.4em 1.2em;
@@ -408,11 +408,11 @@ th, td {
 
 @media (max-width: 500px) {
     .global-headers {
-      margin-top: 135px;
+      margin-top: 180px;
       white-space: nowrap;
       min-height: 45px;
       th.data-out-col-header {
-          transform: rotate(300deg);
+          transform: rotate(285deg);
           writing-mode: lr-tb;
           // padding-top: 30px;
       }
@@ -420,10 +420,7 @@ th, td {
     .data-contracts th.data-out-col-header {
         overflow: visible;
     }
-}
-
-@media (max-width: 750px) {
-    .data-contracts .social-media-icons {
-        bottom: -20px;
+    .data-output .social-media-icons {
+        position: static;
     }
 }

@@ -22,13 +22,16 @@ export default class Table extends Component {
     constructor(props) {
         super(props);
         this.getContractsDivs = this.getContractsDivs.bind(this);
+        this.updateMe = this.updateMe.bind(this);
+    }
+    updateMe() {
+        this.forceUpdate();
     }
     componentDidMount() {
         // Re-render on resize
         let resize = this.props.handleClick;
+        let reRender = this.updateMe;
         window.addEventListener("resize", () => {
-            resize();
-
             // Fixed header responsiveness
             const headerWidth = $('.data-inner-table th').width();
             const dataWidth = $('.data-inner-table td').width();
@@ -36,6 +39,9 @@ export default class Table extends Component {
             $('.global-headers .data-out-row-header').css("min-width", headerWidth);
             $('.data-sync').css("min-width", headerWidth);
             $('.global-headers .data-out-col-header').css("max-width", dataWidth);
+
+            resize();
+            reRender();
         });
 
         // Fixed header responsiveness
@@ -71,9 +77,9 @@ export default class Table extends Component {
             let rowHeader;
             // Responsive! Kinda
             if ($(document).width() < 600) {
-                rowHeader = truncate(dept, 15);
+                rowHeader = truncate(dept, 11);
             } else if ($(document).width() < 1000) {
-                rowHeader = truncate(dept, 40);
+                rowHeader = truncate(dept, 18);
             } else {
                 rowHeader = truncate(dept, 40);
             }
