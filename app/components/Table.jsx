@@ -34,6 +34,7 @@ export default class Table extends Component {
             const dataWidth = $('.data-inner-table td').width();
 
             $('.global-headers .data-out-row-header').css("min-width", headerWidth);
+            $('.data-sync').css("min-width", headerWidth);
             $('.global-headers .data-out-col-header').css("max-width", dataWidth);
         });
 
@@ -41,10 +42,10 @@ export default class Table extends Component {
         const headerWidth = $('.data-inner-table th').width();
         const dataWidth = $('.data-inner-table td').width();
 
-        if ($(document).width() < 1000) {
-            $('.global-headers .data-out-row-header').css("min-width", headerWidth);
-            $('.global-headers .data-out-col-header').css("max-width", dataWidth);
-        }
+
+        $('.global-headers .data-out-row-header').css("min-width", headerWidth);
+        $('.data-sync').css("min-width", headerWidth);
+        $('.global-headers .data-out-col-header').css("max-width", dataWidth);
 
     }
     componentWillUnmount() {
@@ -70,14 +71,14 @@ export default class Table extends Component {
             let rowHeader;
             // Responsive! Kinda
             if ($(document).width() < 600) {
-                rowHeader = truncate(dept, 5);
+                rowHeader = truncate(dept, 15);
             } else if ($(document).width() < 1000) {
-                rowHeader = truncate(dept, 21);
+                rowHeader = truncate(dept, 40);
             } else {
-                rowHeader = truncate(dept, 29);
+                rowHeader = truncate(dept, 40);
             }
             let contractDivs = [
-                <th className={rowHeader.length == dept.length ? 'data-row-header' : 'data-row-header data-tooltip'}>
+                <th className={rowHeader.length == dept.length ? 'data-row-header data-sync' : 'data-row-header data-tooltip data-sync'}>
                     { rowHeader }
                     <span>{rowHeader.length == dept.length ? '' : dept }</span>
                 </th>

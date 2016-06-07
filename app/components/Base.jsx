@@ -20,7 +20,7 @@ export default class Base extends Component {
     }
     componentDidMount() {
         if (inIframe()) {
-            
+
         }
     }
     // We update the URL upon changes to our state

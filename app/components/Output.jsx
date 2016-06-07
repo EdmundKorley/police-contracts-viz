@@ -65,7 +65,7 @@ export default class Output extends Component {
                         truncReview = truncate(review[key], 60);
                     }
                     return <tr>
-                        <th className="data-row-header">{truncKey}</th>
+                        <th className="data-row-header data-sync">{truncKey}</th>
                         <td className={truncReview.length == review[key].length ? "data-no" : "data-tooltip data-no"}>
                             {truncReview}
                             <span>{truncReview.length == review[key].length ? "" : review[key]}</span>

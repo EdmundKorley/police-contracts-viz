@@ -1,7 +1,7 @@
 {
   "name": "police-contracts-viz",
   "version": "0.1.0",
-  "description": "An interactive brief on problematic language in U.S. Police Contracts.",
+  "description": "An interactive brief on problematic language in U.S. police contracts.",
   "main": "-",
   "scripts": {
     "build": "grunt",

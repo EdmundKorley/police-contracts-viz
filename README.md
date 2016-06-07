@@ -1,7 +1,7 @@
 # U.S. Police Contracts
 An interactive brief on problematic language in U.S. police contracts
 
-To build this project, have [nodejs](https://nodejs.org) and [python3](https://www.python.org/download/releases/3.0/) installed.
+To build this project, have [nodejs](https://nodejs.org), [sass](http://sass-lang.com/install) and [python3](https://www.python.org/download/releases/3.0/) installed.
 
 First clone this project and change into the project directory:
 

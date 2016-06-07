@@ -201,15 +201,14 @@ table th[class*="col-"] {
     }
     th.data-out-row-header {
         min-width: 169px;
+        overflow: scroll;
     }
     th.data-out-col-header {
         max-width: 90px;
-        overflow-wrap: break-word;
-        word-break: break-word;
-        hyphens: auto;
+        overflow: scroll;
     }
     .data-inner-table {
-        height: 350px;
+        height: 250px;
         overflow-y: auto;
     }
     th.data-row-header {
@@ -369,7 +368,7 @@ th, td {
             font-size: 14px;
         }
         &, .data-output, th, td {
-            font-size: 10px;
+            font-size: 12px;
         }
         .data-legend {
             .data-circle {
@@ -392,9 +391,6 @@ th, td {
             margin-top: 20px;
             min-height: 240px;
         }
-        .social-media-icons {
-            bottom: -15px;
-        }
     }
 }
 
@@ -406,18 +402,28 @@ th, td {
 
 @media (max-width: 599px) {
     .data-contracts th.data-row-header {
-        min-width: 35px;
-    }
-}
-
-@media (max-width: 750px) {
-    html th.data-out-col-header, .data-contracts th.data-row-headera {
-        font-size: 9px;
+        min-width: 90px;
     }
 }
 
 @media (max-width: 500px) {
-    html th.data-out-col-header, .data-contracts th.data-row-header {
-        font-size: 8px;
+    .global-headers {
+      margin-top: 135px;
+      white-space: nowrap;
+      min-height: 45px;
+      th.data-out-col-header {
+          transform: rotate(300deg);
+          writing-mode: lr-tb;
+          // padding-top: 30px;
+      }
+    }
+    .data-contracts th.data-out-col-header {
+        overflow: visible;
+    }
+}
+
+@media (max-width: 750px) {
+    .data-contracts .social-media-icons {
+        bottom: -20px;
     }
 }

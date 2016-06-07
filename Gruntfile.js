@@ -5,9 +5,9 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         // webpack
-        webpack: {
-            react: webpackConfig
-        },
+        // webpack: {
+        //     react: webpackConfig
+        // },
         // Compiles our SCSS to CSS
         sass: {
             options: {
@@ -45,10 +45,10 @@ module.exports = function(grunt) {
                 files: 'stylesheets/**/*.scss',
                 tasks: ['sass', 'postcss']
             },
-            js: {
-                files: ['data/*', 'app/*'],
-                tasks: ['webpack']
-            }
+            // js: {
+            //     files: ['data/*', 'app/*'],
+            //     tasks: ['webpack']
+            // }
         }
     });
 
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-webpack');
+    // grunt.loadNpmTasks('grunt-webpack');
 
     // Default task(s)
     grunt.registerTask('default', ['watch']);
