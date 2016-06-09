@@ -22,22 +22,16 @@ export default class Table extends Component {
     constructor(props) {
         super(props);
         this.getContractsDivs = this.getContractsDivs.bind(this);
-        this.updateMe = this.updateMe.bind(this);
-    }
-    updateMe() {
-        this.forceUpdate();
     }
     componentDidMount() {
         // Re-render on resize
         let resize = this.props.handleClick;
-        let reRender = this.updateMe;
         window.addEventListener("resize", () => {
             // Fixed header responsiveness
             const headerWidth = $('.data-inner-table th').width();
             const dataWidth = $('.data-inner-table td').width();
 
             $('.global-headers .data-out-row-header').css("min-width", headerWidth);
-            $('.data-sync').css("min-width", headerWidth + "px !important");
             $('.global-headers .data-out-col-header').css("max-width", dataWidth);
             $('.global-headers .data-out-col-header').css("width", dataWidth);
 
@@ -50,7 +44,6 @@ export default class Table extends Component {
         const dataWidth = $('.data-inner-table td').width();
 
         $('.global-headers .data-out-row-header').css("min-width", headerWidth);
-        $('.data-sync').css("min-width", headerWidth + "px !important");
         $('.global-headers .data-out-col-header').css("max-width", dataWidth);
         $('.global-headers .data-out-col-header').css("width", dataWidth);
 
@@ -60,7 +53,6 @@ export default class Table extends Component {
         // Unplug resize event listener
         window.removeEventListener("resize", () => {
             resize();
-            reRender();
         });
     }
     // This massive function (to be modularized and made more sensible) builds the table rows of data
