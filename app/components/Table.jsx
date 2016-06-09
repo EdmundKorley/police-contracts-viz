@@ -60,6 +60,7 @@ export default class Table extends Component {
         // Unplug resize event listener
         window.removeEventListener("resize", () => {
             resize();
+            reRender();
         });
     }
     // This massive function (to be modularized and made more sensible) builds the table rows of data
@@ -83,6 +84,10 @@ export default class Table extends Component {
                 rowHeader = truncate(dept, 18);
             } else {
                 rowHeader = truncate(dept, 40);
+            }
+            if (sign) {
+              let endIndex = dept.length - 21;
+              rowHeader = dept.substring(0, endIndex);
             }
             let contractDivs = [
                 <th className={rowHeader.length == dept.length ? 'data-row-header data-sync' : 'data-row-header data-tooltip data-sync'}>
@@ -158,10 +163,10 @@ export default class Table extends Component {
                 </div>
                 <div className="data-inner-table">
                     <table>
-                        <u><h3>Statewide Police Bills of Rights</h3></u>
+                        <u><h3>Statewide Police Bills of Rights:</h3></u>
                         { contractDivsState }
                         <br></br>
-                        <u><h3>City Police Union Contracts</h3></u>
+                        <u><h3>City Police Union Contracts:</h3></u>
                         { contractDivsCity }
                     </table>
                 </div>

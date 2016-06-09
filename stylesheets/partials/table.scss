@@ -337,9 +337,6 @@ table th[class*="col-"] {
     }
 }
 
-.pool-header {
-  margin-top: 100px;
-}
 .data-tooltip {
     position: relative;
     span {
@@ -359,6 +356,12 @@ table th[class*="col-"] {
         background-color: black;
         color: $data-no;
     }
+}
+
+.data-inner-table {
+  table h3 {
+    margin: 0 !important;
+  }
 }
 
 th, td {
@@ -386,9 +389,11 @@ th, td {
             text-align: left;
         }
     }
+
     .pool-header {
-      margin-top: 100px;
+      margin-top: 80px;
     }
+
     .data-output {
         display: flex;
         flex-direction: column;
@@ -408,6 +413,7 @@ th, td {
     .pool-header {
         // margin-top: 115px;
     }
+
     html {
         &, .data-output, th, td {
             font-size: 11px;
@@ -426,7 +432,8 @@ th, td {
 
 @media (max-width: 500px) {
     .global-headers {
-      margin-top: 130px;
+      margin-top: 160px;
+      margin-bottom: -6px;
       white-space: pre;
       min-height: 45px;
       th.data-out-col-header {
@@ -446,7 +453,7 @@ th, td {
       }
     }
     .pool-header {
-      margin-top: 100px;
+      margin-top: 110px;
     }
 }
 
