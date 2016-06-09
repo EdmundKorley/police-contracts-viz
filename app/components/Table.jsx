@@ -37,8 +37,9 @@ export default class Table extends Component {
             const dataWidth = $('.data-inner-table td').width();
 
             $('.global-headers .data-out-row-header').css("min-width", headerWidth);
-            $('.data-sync').css("min-width", headerWidth);
+            $('.data-sync').css("min-width", headerWidth + "px !important");
             $('.global-headers .data-out-col-header').css("max-width", dataWidth);
+            $('.global-headers .data-out-col-header').css("width", dataWidth);
 
             resize();
             // reRender();
@@ -48,10 +49,10 @@ export default class Table extends Component {
         const headerWidth = $('.data-inner-table th').width();
         const dataWidth = $('.data-inner-table td').width();
 
-
         $('.global-headers .data-out-row-header').css("min-width", headerWidth);
-        $('.data-sync').css("min-width", headerWidth);
+        $('.data-sync').css("min-width", headerWidth + "px !important");
         $('.global-headers .data-out-col-header').css("max-width", dataWidth);
+        $('.global-headers .data-out-col-header').css("width", dataWidth);
 
     }
     componentWillUnmount() {
@@ -77,7 +78,7 @@ export default class Table extends Component {
             let rowHeader;
             // Responsive! Kinda
             if ($(document).width() < 600) {
-                rowHeader = truncate(dept, 11);
+                rowHeader = truncate(dept, 18);
             } else if ($(document).width() < 1000) {
                 rowHeader = truncate(dept, 18);
             } else {
@@ -157,8 +158,10 @@ export default class Table extends Component {
                 </div>
                 <div className="data-inner-table">
                     <table>
+                        <u><h3>Statewide Police Bills of Rights</h3></u>
                         { contractDivsState }
                         <br></br>
+                        <u><h3>City Police Union Contracts</h3></u>
                         { contractDivsCity }
                     </table>
                 </div>

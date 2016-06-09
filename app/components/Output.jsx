@@ -37,12 +37,13 @@ export default class Output extends Component {
         // We generate a truncated version of these texts too, to avoid making app too wanting for space
         // Truncated version of excessively long texts shown and full version dormant in a modal
         let reviews = ids.map((id) => directory[id]);
-        let texts = reviews.map((review) => [review['Policy Language'], Number(review['Unique identifier'])]);
-        let textsToShow = texts.map((text) => [truncate(text[0], 150), text[1]]);
-        let textToShow, text;
+        let texts = reviews.map((review) => [review['Policy Language'], Number(review['Unique identifier']), review['Specific Impact of Policy']]);
+        let textsToShow = texts.map((text) => [truncate(text[0], 275), text[1]]);
+        let textLanguageToShow, textImpactToShow, text;
         for (var i = 0; i < textsToShow.length; i++) {
             if (textsToShow[i][1] == global_id) {
-                textToShow = textsToShow[i][0];
+                textLanguageToShow = textsToShow[i][0];
+                textImpactToShow = texts[i][2];
                 text = texts[i][0];
             }
         }
@@ -55,11 +56,11 @@ export default class Output extends Component {
                 reviewDivIndex = index;
             }
             return Object.keys(review).map((key) => {
-                if (key != 'Policy Language') {
+                if (key != 'Policy Language' && key != 'Specific Impact of Policy') {
                     let truncKey, truncReview;
                     if ($(document).width() < 600) {
                         truncKey = truncate(key, 30);
-                        truncReview = truncate(review[key], 21);
+                        truncReview = truncate(review[key], 40);
                     } else {
                         truncKey = truncate(key, 50);
                         truncReview = truncate(review[key], 60);
@@ -89,11 +90,11 @@ export default class Output extends Component {
         let fbShare = "https://www.facebook.com/sharer/sharer.php?u=" + host;
 
         // Massive export, bad I know 😅, to be refactored. This whole component in fact ...
-        return [reviews, reviewDiv, reviewPolyDivs, text, textToShow, tweetShare, fbShare];
+        return [reviews, reviewDiv, reviewPolyDivs, text, textLanguageToShow, textImpactToShow, tweetShare, fbShare];
     }
     render() {
         let idToPass = this.props.ids[this.props.ids.length - 1];
-        let [reviews, reviewDiv, reviewPolyDivs, text, textToShow, tweetShare, fbShare] = this.getDivs(idToPass);
+        let [reviews, reviewDiv, reviewPolyDivs, text, textLanguageToShow, textImpactToShow, tweetShare, fbShare] = this.getDivs(idToPass);
         return <div>
             <div className="data-output">
                 <table>
@@ -104,10 +105,15 @@ export default class Output extends Component {
 
                 <div className="data-info">
 
-                    <h3>Policy Language</h3>
-                    <p className={textToShow.length == text.length ? "" : "data-tooltip"}>
-                        {textToShow}
-                        <span>{textToShow.length == text.length ? "" : text}</span>
+                    <u><h3>Specific Impact of Policy</h3></u>
+                    <p>
+                        {textImpactToShow}
+                    </p>
+
+                    <u><h3>Policy Language</h3></u>
+                    <p className={textLanguageToShow.length == text.length ? "" : "data-tooltip"}>
+                        {textLanguageToShow}
+                        <span>{textLanguageToShow.length == text.length ? "" : text}</span>
                     </p>
 
                     <div className="social-media-icons">
@@ -144,9 +150,14 @@ export default class Output extends Component {
                 </div>
             </div>
 
+            <div className="pool-header">
+                <h3>All problematic provisions in the category, <u>{directory[idToPass]['Category']}</u>, for <u>{directory[idToPass]['City/State']}</u>:</h3>
+            </div>
+
             <div className="data-output-pool">
                 { reviewPolyDivs }
             </div>
+
         </div>
     }
 }

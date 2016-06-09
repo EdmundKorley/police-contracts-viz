@@ -18,7 +18,8 @@ def dataByUniq(data):
     new = {}
     for item in data:
         id = item['Unique identifier']
-        new[int(id)] = item
+        if id is not '':
+            new[int(id)] = item
     return new
 
 def dataByCategory(data):

@@ -213,9 +213,10 @@ table th[class*="col-"] {
     }
     th.data-row-header {
         min-width: 160px;
+        white-space: nowrap;
     }
     td {
-        width: 90px;
+        width: 160px;
     }
 }
 
@@ -280,8 +281,8 @@ table th[class*="col-"] {
     font-size: 14px;
     .data-info {
         color: lighten($data-no, 20);
-        max-width: 400px;
-        height: 230px;
+        max-width: 670px;
+        height: 300px;
         margin-left: 30px;
         padding: 30px;
         font-size: 16px;
@@ -336,6 +337,9 @@ table th[class*="col-"] {
     }
 }
 
+.pool-header {
+  margin-top: 100px;
+}
 .data-tooltip {
     position: relative;
     span {
@@ -368,7 +372,7 @@ th, td {
             font-size: 14px;
         }
         &, .data-output, th, td {
-            font-size: 12px;
+            font-size: 14px;
         }
         .data-legend {
             .data-circle {
@@ -382,6 +386,9 @@ th, td {
             text-align: left;
         }
     }
+    .pool-header {
+      margin-top: 100px;
+    }
     .data-output {
         display: flex;
         flex-direction: column;
@@ -389,14 +396,22 @@ th, td {
         .data-info {
             margin-left: 0;
             margin-top: 20px;
-            min-height: 240px;
+            min-height: 290px;
+        }
+        .social-media-icons {
+            position: static;
         }
     }
 }
 
 @media (max-width: 730px) {
-    .data-output-pool {
-        margin-top: 65px;
+    .pool-header {
+        // margin-top: 115px;
+    }
+    html {
+        &, .data-output, th, td {
+            font-size: 11px;
+        }
     }
 }
 
@@ -404,12 +419,15 @@ th, td {
     .data-contracts th.data-row-header {
         min-width: 90px;
     }
+    .data-output th.data-row-header {
+      width: inherit;
+    }
 }
 
 @media (max-width: 500px) {
     .global-headers {
-      margin-top: 180px;
-      white-space: nowrap;
+      margin-top: 130px;
+      white-space: pre;
       min-height: 45px;
       th.data-out-col-header {
           transform: rotate(285deg);
@@ -419,8 +437,21 @@ th, td {
     }
     .data-contracts th.data-out-col-header {
         overflow: visible;
+
     }
-    .data-output .social-media-icons {
-        position: static;
+    .data-output {
+      display: inline-flex;
+      .data-info {
+          min-height: 360px;
+      }
     }
+    .pool-header {
+      margin-top: 100px;
+    }
+}
+
+@media (max-width: 400px) {
+  .data-output .data-info {
+      min-height: 440px;
+  }
 }
