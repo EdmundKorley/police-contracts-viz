@@ -4,6 +4,7 @@
   "description": "An interactive brief on problematic language in U.S. police contracts.",
   "main": "-",
   "scripts": {
+    "start": "node server.js",
     "build": "grunt",
     "serve": "http-server public/"
   },
@@ -31,6 +32,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "express": "^4.14.0",
     "jquery": "^2.2.4",
     "react": "^15.0.2",
     "react-dom": "^15.0.2"
